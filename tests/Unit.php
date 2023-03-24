@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../src/minima.php';
+require_once __DIR__ . '/../minima.php';
 
 use Command as Test;
 
