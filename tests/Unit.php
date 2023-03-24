@@ -25,6 +25,16 @@ $exitCodes = [
 	}),
 
 	Test::main(function () {
+		$this->info('Testing: XML_ANSI Interface');
+
+        echo (assert(XML_ANSI::INFO === ANSI::GREEN) ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+        echo (assert(XML_ANSI::WARNING === ANSI::YELLOW) ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+        echo (assert(XML_ANSI::ERROR === ANSI::RED) ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+        echo (assert(XML_ANSI::COMMENT === ANSI::GRAY) ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+        echo (assert(XML_ANSI::RESET === ANSI::RESET) ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+   }),
+
+	Test::main(function () {
 		$this->info('Testing: WritesToConsole');
 
 		$this->line('---------');
