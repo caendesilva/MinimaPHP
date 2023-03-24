@@ -81,6 +81,10 @@ class Console {
     }
 }
 
+class Input {
+	//
+}
+
 class Command {
 	use WritesToConsole;
 
