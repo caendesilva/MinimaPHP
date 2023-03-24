@@ -51,6 +51,13 @@ trait WritesToConsole {
     		'<error>' => XML_ANSI::ERROR,
     		'<reset>' => XML_ANSI::RESET,
     	];
+
+    	$endTags = [
+    		'</info>' => XML_ANSI::RESET,
+    		'</warning>' => XML_ANSI::RESET,
+    		'</error>' => XML_ANSI::RESET,
+    		'</reset>' => XML_ANSI::RESET,
+    	];
     }
 }
 
