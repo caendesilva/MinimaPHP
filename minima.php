@@ -4,6 +4,10 @@ interface Minima {
     const VERSION = 'v0.1.0-dev';
 }
 
+interface Console {
+    //
+}
+
 interface ANSI {
     const BLACK   = "\033[30m";
     const RED     = "\033[31m";
