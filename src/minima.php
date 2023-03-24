@@ -49,6 +49,7 @@ trait WritesToConsole {
     		'<info>' => XML_ANSI::INFO,
     		'<warning>' => XML_ANSI::WARNING,
     		'<error>' => XML_ANSI::ERROR,
+    		'<reset>' => XML_ANSI::RESET,
     	];
     }
 }
