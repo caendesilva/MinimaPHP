@@ -1,12 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../src/minima.php';
+require_once __DIR__ . '/../minima.php';
 
 Command::main(function () {
     $this->info('Formatting files!');
 
     $directories = [
-        __DIR__ . '/../src',
         __DIR__ . '/../tests',
         __DIR__ . '/../examples'
     ];
