@@ -17,7 +17,13 @@ interface ANSI {
 }
 
 trait WritesToConsole {
-	//
+	protected function write(string $string): void {
+	    Console::write($string);
+	}
+
+	protected function line(string $message = ''): void {
+        Console::write($message . PHP_EOL);
+    }
 }
 
 class Console {
