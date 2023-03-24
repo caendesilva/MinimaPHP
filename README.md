@@ -20,3 +20,12 @@ Command::main(function (): void {
 });
 ```
 
+### Exit codes
+
+If your closure function returns an exit code, the `main` method/function will return that as well. You can then use this to set the exit code for your script:
+
+```php
+exit(Command::main(function (): int {
+	return 1;
+}));
+```
