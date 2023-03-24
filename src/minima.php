@@ -26,6 +26,6 @@ class Command {
 	public static function main(callable $logic): int {
 		$command = new static();
 
-		return $logic($command);
+		return $logic($command) ?? 0;
 	}
 }
