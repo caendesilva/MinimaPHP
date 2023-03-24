@@ -23,8 +23,10 @@ class Console {
 }
 
 class Command {
+	protected Console $console;
+
 	protected function __construct() {
-		//
+		$this->console = new Console();
 	}
 
 	public static function main(callable $logic): int {
