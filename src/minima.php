@@ -23,6 +23,10 @@ class Console {
 }
 
 class Command {
+	protected function __construct() {
+		//
+	}
+
 	public static function main(callable $logic): int {
 		$command = new static();
 
