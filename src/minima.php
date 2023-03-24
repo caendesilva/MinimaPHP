@@ -16,6 +16,12 @@ interface ANSI {
     const RESET   = "\033[0m";
 }
 
+interface XML_ANSI {
+	const INFO    = ANSI::GREEN;
+	const WARNING = ANSI::YELLOW;
+	const ERROR   = ANSI::RED;
+}
+
 trait WritesToConsole {
 	protected function write(string $string): void {
 	    Console::write($string);
