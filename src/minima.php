@@ -70,6 +70,7 @@ trait WritesToConsole {
     	$this->line($formatted);
     }
 
+    /** @example $this->line('Hello ' . $this->ask('Name')); */
     protected function ask(string $question): string {
     	return Input::readline(ANSI::YELLOW."$question: ".ANSI::RESET);
     }
