@@ -119,8 +119,19 @@ class Command {
     }
 
     private function parseArguments(): array {
+        global $argc;
+        global $argv;
+
         $options = [];
         $arguments = [];
+
+        for($i = 1; $i < $argc; $i++) {
+            if (str_starts_with($argv[$i], '-')) {
+                $options[] = $argv[$i];
+            } else {
+                $arguments[] = $argv[$i];
+            }
+        }
 
         return array($options, $arguments);
     }
