@@ -25,13 +25,13 @@ interface XML_ANSI {
     const RESET   = ANSI::RESET;
 }
 
-trait WritesToConsole {
+trait WritesToOutput {
     protected function write(string $string): void {
-        Console::write($string);
+        Output::write($string);
     }
 
     protected function line(string $message = ''): void {
-        Console::write($message . PHP_EOL);
+        Output::write($message . PHP_EOL);
     }
 
     protected function info(string $message): void {
@@ -76,7 +76,7 @@ trait WritesToConsole {
     }
 }
 
-class Console {
+class Output {
     public static function write(string $string): void {
         file_put_contents('php://stdout', $string);
     }
@@ -97,15 +97,15 @@ class Input {
 }
 
 class Command {
-    use WritesToConsole;
+    use WritesToOutput;
 
-    protected Console $console;
+    protected Output $output;
 
     protected array $options;
     protected array $arguments;
 
     protected function __construct() {
-        $this->console = new Console();
+        $this->output = new Output();
 
         list($this->options, $this->arguments) = $this->parseArguments();
     }
