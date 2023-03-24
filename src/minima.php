@@ -43,6 +43,10 @@ trait WritesToConsole {
     protected function error(string $message): void {
     	$this->line(XML_ANSI::ERROR . $message . ANSI::RESET);
     }
+
+    protected function formatter(string $message): void {
+    	//
+    }
 }
 
 class Console {
