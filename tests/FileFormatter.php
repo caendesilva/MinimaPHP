@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../minima.php';
 
-main(function () {
+Command::main(function () {
     $this->info('Formatting files!');
 
     $directories = [
