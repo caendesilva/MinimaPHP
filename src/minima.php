@@ -16,6 +16,10 @@ interface ANSI {
     const RESET   = "\033[0m";
 }
 
+trait WritesToConsole {
+	//
+}
+
 class Console {
 	public static function write(string $string): void {
         file_put_contents('php://stdout', $string);
@@ -27,6 +31,8 @@ class Console {
 }
 
 class Command {
+	use WritesToConsole;
+
 	protected Console $console;
 
 	protected function __construct() {
