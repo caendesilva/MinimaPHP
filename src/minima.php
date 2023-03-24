@@ -94,10 +94,6 @@ class Input {
 	public static function getline(): string {
 		return trim(fgets(STDIN));
 	}
-
-	public static function getint(): int {
-		return fscanf(STDIN, "%d\n", $number);
-	}
 }
 
 class Command {
