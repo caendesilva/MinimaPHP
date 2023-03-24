@@ -8,4 +8,4 @@ $exitCodes = [
 	})
 ];
 
-exit($exitCode);
+exit(max($exitCodes));
