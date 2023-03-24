@@ -13,5 +13,11 @@ interface ANSI {
 }
 
 class Console {
-	//
+	public function write(string $string): void {
+        file_put_contents('php://stdout', $string);
+    }
+
+    public function line(string $message = ''): void {
+        static::write($message . PHP_EOL);
+    }
 }
