@@ -32,6 +32,8 @@ class Command {
 	public static function main(Closure $logic): int {
 		$command = new static();
 
+		$logic = $logic->bindTo($command, static::class);
+
 		return $logic($command) ?? 0;
 	}
 }
