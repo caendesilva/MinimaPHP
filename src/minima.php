@@ -20,6 +20,7 @@ interface XML_ANSI {
 	const INFO    = ANSI::GREEN;
 	const WARNING = ANSI::YELLOW;
 	const ERROR   = ANSI::RED;
+	const RESET   = ANSI::RESET;
 }
 
 trait WritesToConsole {
