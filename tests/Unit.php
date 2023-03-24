@@ -12,16 +12,16 @@ $exitCodes = [
 	Test::main(function () {
 		$this->info('Testing: ANSI Interface');
 
-		assert(ANSI::BLACK === "\033[30m");
-		assert(ANSI::RED === "\033[31m");
-		assert(ANSI::GREEN === "\033[32m");
-		assert(ANSI::YELLOW === "\033[33m");
-		assert(ANSI::BLUE === "\033[34m");
-		assert(ANSI::MAGENTA === "\033[35m");
-		assert(ANSI::CYAN === "\033[36m");
-		assert(ANSI::WHITE === "\033[37m");
-		assert(ANSI::GRAY === "\033[90m");
-		assert(ANSI::RESET === "\033[0m");
+		echo (assert(ANSI::BLACK === "\033[30m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::RED === "\033[31m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::GREEN === "\033[32m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::YELLOW === "\033[33m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::BLUE === "\033[34m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::MAGENTA === "\033[35m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::CYAN === "\033[36m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::WHITE === "\033[37m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::GRAY === "\033[90m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
+		echo (assert(ANSI::RESET === "\033[0m") ? 'Assertion passed' : 'Assertion failed') . PHP_EOL;
 	}),
 
 	Test::main(function () {
