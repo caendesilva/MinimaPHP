@@ -44,7 +44,7 @@ trait WritesToConsole {
     	$this->line(XML_ANSI::ERROR . $message . ANSI::RESET);
     }
 
-    protected function formatter(string $message): void {
+    protected function formatted(string $message): void {
     	$startTags = [
     		'<info>' => XML_ANSI::INFO,
     		'<warning>' => XML_ANSI::WARNING,
