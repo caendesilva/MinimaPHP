@@ -113,7 +113,7 @@ class Command {
 
         $logic = $logic->bindTo($command, static::class);
 
-        return $logic($command) ?? 0;
+        return $logic() ?? 0;
     }
 }
 
