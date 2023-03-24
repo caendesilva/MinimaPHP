@@ -90,6 +90,10 @@ class Input {
 	public static function readline(?string $prompt = null): string {
 		return readline($prompt);
 	}
+
+	public static function getline(): string {
+		return trim(fgets(STDIN));
+	}
 }
 
 class Command {
