@@ -58,13 +58,13 @@ class Command {
 }
 
 if (! function_exists('dump')) {
-	public function dump(mixed $value): void {
+	function dump(mixed $value): void {
 		var_dump($value);
 	}
 }
 
 if (! function_exists('dd')) {
-	public function dd(mixed $value): never {
+	function dd(mixed $value): never {
 		dump($value);
 		die(1);
 	}
