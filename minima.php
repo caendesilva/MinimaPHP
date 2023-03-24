@@ -5,7 +5,8 @@ interface Minima {
 }
 
 interface Console {
-    //
+    const INPUT = STDIN;
+    const OUTPUT = STDOUT;
 }
 
 interface ANSI {
@@ -96,7 +97,7 @@ class Input {
     }
 
     public static function getline(): string {
-        return trim(fgets(STDIN));
+        return trim(fgets(Console::INPUT));
     }
 }
 
