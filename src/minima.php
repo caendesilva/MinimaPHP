@@ -59,6 +59,8 @@ trait WritesToConsole {
     		'</reset>' => XML_ANSI::RESET,
     		'</>' => XML_ANSI::RESET,
     	];
+
+    	$formatted = str_replace(array_keys($startTags), array_values($startTags), $message);
     }
 }
 
