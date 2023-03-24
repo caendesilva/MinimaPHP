@@ -41,6 +41,9 @@ class Command {
 
 	protected Console $console;
 
+	protected array $options;
+	protected array $arguments;
+
 	protected function __construct() {
 		$this->console = new Console();
 	}
