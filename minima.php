@@ -106,6 +106,8 @@ class Command {
 
     protected function __construct() {
         $this->console = new Console();
+
+        list($this->options, $this->arguments) = $this->parseArguments();
     }
 
     public static function main(Closure $logic): int {
@@ -114,6 +116,13 @@ class Command {
         $logic = $logic->bindTo($command, static::class);
 
         return $logic() ?? 0;
+    }
+
+    private function parseArguments(): array {
+        $options = [];
+        $arguments = [];
+
+        return array($options, $arguments);
     }
 }
 
