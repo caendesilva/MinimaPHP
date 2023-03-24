@@ -21,3 +21,7 @@ class Console {
         static::write($message . PHP_EOL);
     }
 }
+
+class Command {
+	//
+}
