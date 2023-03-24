@@ -2,6 +2,8 @@
 
 require_once 'src/minima.php';
 
-Command::main(function (Command $command) {
+$exitCode = Command::main(function (Command $command) {
 	//
 });
+
+exit($exitCode);
