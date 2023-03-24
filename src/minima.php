@@ -46,9 +46,9 @@ trait WritesToConsole {
 
     protected function formatter(string $message): void {
     	$startTags = [
-    		'info' => XML_ANSI::INFO,
-    		'warning' => XML_ANSI::WARNING,
-    		'error' => XML_ANSI::ERROR,
+    		'<info>' => XML_ANSI::INFO,
+    		'<warning>' => XML_ANSI::WARNING,
+    		'<error>' => XML_ANSI::ERROR,
     	];
     }
 }
