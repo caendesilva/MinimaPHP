@@ -1,7 +1,7 @@
 <?php
 
 interface Minima {
-	//
+	const VERSION = 'v0.1.0-dev';
 }
 
 interface ANSI {
