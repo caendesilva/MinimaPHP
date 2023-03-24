@@ -30,6 +30,18 @@ trait WritesToConsole {
 	protected function line(string $message = ''): void {
         Console::write($message . PHP_EOL);
     }
+
+    protected function info(string $message): void {
+    	$this->line(XML_ANSI::INFO . $message . ANSI::RESET);
+    }
+
+    protected function warning(string $message): void {
+    	$this->line(XML_ANSI::WARNING . $message . ANSI::RESET);
+    }
+
+    protected function error(string $message): void {
+    	$this->line(XML_ANSI::ERROR . $message . ANSI::RESET);
+    }
 }
 
 class Console {
