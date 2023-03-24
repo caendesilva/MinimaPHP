@@ -29,7 +29,7 @@ class Command {
 		$this->console = new Console();
 	}
 
-	public static function main(callable $logic): int {
+	public static function main(Closure $logic): int {
 		$command = new static();
 
 		return $logic($command) ?? 0;
