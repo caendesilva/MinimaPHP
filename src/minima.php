@@ -13,6 +13,7 @@ interface ANSI {
     const MAGENTA = "\033[35m";
     const CYAN    = "\033[36m";
     const WHITE   = "\033[37m";
+    const GRAY    = "\033[90m";
     const RESET   = "\033[0m";
 }
 
