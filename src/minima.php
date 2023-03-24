@@ -61,6 +61,7 @@ trait WritesToConsole {
     	];
 
     	$formatted = str_replace(array_keys($startTags), array_values($startTags), $message);
+    	$formatted = str_replace(array_keys($endTags), array_values($endTags), $formatted);
     }
 }
 
