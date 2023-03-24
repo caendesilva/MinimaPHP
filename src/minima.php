@@ -21,6 +21,7 @@ interface XML_ANSI {
 	const INFO    = ANSI::GREEN;
 	const WARNING = ANSI::YELLOW;
 	const ERROR   = ANSI::RED;
+	const COMMENT = ANSI::GRAY;
 	const RESET   = ANSI::RESET;
 }
 
@@ -50,6 +51,7 @@ trait WritesToConsole {
     		'<info>' => XML_ANSI::INFO,
     		'<warning>' => XML_ANSI::WARNING,
     		'<error>' => XML_ANSI::ERROR,
+    		'<comment>' => XML_ANSI::COMMENT,
     		'<reset>' => XML_ANSI::RESET,
     	];
 
@@ -57,6 +59,7 @@ trait WritesToConsole {
     		'</info>' => XML_ANSI::RESET,
     		'</warning>' => XML_ANSI::RESET,
     		'</error>' => XML_ANSI::RESET,
+    		'</comment>' => XML_ANSI::COMMENT,
     		'</reset>' => XML_ANSI::RESET,
     		'</>' => XML_ANSI::RESET,
     	];
