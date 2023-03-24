@@ -117,6 +117,12 @@ class Command {
     }
 }
 
+if (! function_exists('main')) {
+    function main(Closure $logic): int {
+        return Command::main($logic);
+    }
+}
+
 if (! function_exists('dump')) {
     function dump(mixed $value): void {
         var_dump($value);
