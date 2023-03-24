@@ -56,3 +56,16 @@ class Command {
 		return $logic($command) ?? 0;
 	}
 }
+
+if (! function_exists('dump')) {
+	public function dump(mixed $value): void {
+		var_dump($value);
+	}
+}
+
+if (! function_exists('dd')) {
+	public function dd(mixed $value): never {
+		dump($value);
+		die(1);
+	}
+}
