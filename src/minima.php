@@ -82,7 +82,9 @@ class Console {
 }
 
 class Input {
-	//
+	public static function readline(?string $prompt = null): string {
+		return readline($prompt);
+	}
 }
 
 class Command {
