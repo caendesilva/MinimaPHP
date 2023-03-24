@@ -11,3 +11,7 @@ interface ANSI {
     const WHITE   = "\033[37m";
     const RESET   = "\033[0m";
 }
+
+class Console {
+	//
+}
