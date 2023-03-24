@@ -24,6 +24,6 @@ class Console {
 
 class Command {
 	public static function main(callable $logic): int {
-		//
+		return $logic();
 	}
 }
