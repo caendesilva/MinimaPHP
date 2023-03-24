@@ -69,6 +69,10 @@ trait WritesToConsole {
 
     	$this->line($formatted);
     }
+
+    protected function ask(string $question): string {
+    	return Input::readline(ANSI::YELLOW."$question: ".ANSI::RESET);
+    }
 }
 
 class Console {
