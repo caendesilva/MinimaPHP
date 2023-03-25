@@ -26,6 +26,6 @@ If your closure function returns an exit code, the `main` method/function will r
 
 ```php
 exit(Command::main(function (): int {
-	return 1;
+    return 1;
 }));
 ```
