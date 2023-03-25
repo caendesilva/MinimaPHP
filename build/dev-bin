@@ -3,7 +3,6 @@
 
 require_once __DIR__.'/../minima.php';
 
-/** @internal */
 interfact ARGS {
     public const COMMANDS = [
         //
