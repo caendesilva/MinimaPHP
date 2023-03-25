@@ -77,6 +77,11 @@ function InitCommand(): Closure {
             $mainName = $this->ask('Enter a new name');
         }
 
+        $sourcePath = __DIR__ .'/minima.php';
+        if (! file_exists($sourcePath)) {
+            $this->error('Could not find a copy of the Minima source code.');
+        }
+
         return 0;
     };
 }
