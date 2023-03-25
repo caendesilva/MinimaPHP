@@ -66,9 +66,9 @@ class Dumper {
         $parts = [];
         foreach ($array as $key => $value) {
             if (is_int($key)) {
-                $parts[] = static::highlight($value);
+                $parts[] = $this->runHighlighter($value);
             } else {
-                $parts[] = static::string($key).' => '.static::highlight($value);
+                $parts[] = $this->string($key).' => '.$this->runHighlighter($value);
             }
         }
         return '['.implode(', ', $parts).']';
