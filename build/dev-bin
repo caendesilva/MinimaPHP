@@ -107,6 +107,8 @@ PHP);
 
         $this->line("Created $mainName.php");
 
+        $this->info("All done! You can now define your logic in the '$mainName.php' file, then run it using `php $mainName`");
+
         return 0;
     };
 }
