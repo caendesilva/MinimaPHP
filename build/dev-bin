@@ -69,7 +69,7 @@ function InitCommand(): Closure {
         if ($this->hasOption('name')) {
             $mainName = $this->getOption('name');
         } else {
-            $mainName = basename(dirname($baseDir));
+            $mainName = basename($baseDir);
         }
 
         while (file_exists("$baseDir/$mainName.php")) {
