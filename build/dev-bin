@@ -99,6 +99,10 @@ function NewCommand(): Closure {
     };
 }
 
+function downloadSourceTo(string $path) {
+    file_put_contents($path, file_get_contents('https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/minima.php'));
+}
+
 $function = CommandRouter::handle();
 
 $exitCode = Command::main($function);
