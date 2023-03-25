@@ -57,7 +57,15 @@ class Dumper {
         return $value;
     }
 
-    protected static function array(array $value): string {
-        return $value;
+    protected static function array(array $array): string {
+        $parts = [];
+        foreach ($array as $key => $value) {
+            if (is_int($key)) {
+                $parts[] = static::highlight($value);
+            } else {
+                $parts[] = static::string($key).' => '.static::highlight($value);
+            }
+        }
+        return '['.implode(', ', $parts).']';
     }
 }
