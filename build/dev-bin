@@ -71,6 +71,11 @@ function InitCommand(): Closure {
         } else {
             $mainName = basename(dirname($baseDir));
         }
+
+        while (file_exists("$baseDir/$mainName.php")) {
+            $this->error("File $mainName.php already exists in this directory! Please pick a new one.");
+            $mainName = $this->ask('Enter a new name');
+        }
     };
 }
 
