@@ -137,6 +137,19 @@ class Command {
         return $formatted;
     }
 
+    protected function arguments(): array {
+        $formatted = [];
+        foreach ($this->arguments as $index => $argument) {
+            if (str_contains($argument, '=')) {
+                $parts = explode('=', $argument);
+                $formatted[$parts[0]] = $parts[1];
+            } else {
+                $formatted[$index] = $argument;
+            }
+        }
+        return $formatted;
+    }
+
     private function parseArguments(): array {
         global $argc;
         global $argv;
