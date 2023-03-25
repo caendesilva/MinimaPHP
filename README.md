@@ -131,7 +131,7 @@ If your argument contains spaces, you must quote them, otherwise the parser cons
 
 #### Array access
 
-Options can be accessed using the `options` array, and arguments using the `arguments` array. These will return simple arrays the separated values.
+Options can be accessed using the `options` array, and arguments using the `arguments` array. You can also access them through the `options()` and `arguments()` methods.
 
 ```php
 Command::main(function () {
@@ -141,21 +141,7 @@ Command::main(function () {
 });
 ```
 
-For example, this would return the following:
-
-```bash
-php examples/arguments.php example --help -v --foo=bar bar=baz
-
-# Here is the data you passed to the command:
-# Options: --help, -v, --foo=bar
-# Arguments: example, bar=baz
-```
-
-#### Method access
-
-If you want you can use "smarter" helper methods to get options and arguments parsed into a more easily accessible array. Simply replace `->options` with `->options()` and `->arguments` with `->arguments()`.
-
-Options will now be returned as a list like this, where the option name is used as the array key, with the value as the value. If your option is a boolean flag, the value will be set to `true`.
+Options will be returned as a list like this, where the option name is used as the array key, with the value as the value. If your option is a boolean flag, the value will be set to `true`.
 
 ```php
 // --help -v --foo=bar
@@ -168,4 +154,28 @@ Likewise, arguments accessed through the method are also in an associative array
 ```php
 // example foo=bar baz
 [0 => 'example', 'foo' => 'bar', 2 => 'baz']
+```
+
+#### State helpers
+
+Use `hasArgument` and `hasOption` to determine if the argument or option was passed to the command.
+
+```php
+$this->hasArgument('foo'): bool;
+$this->hasOption('foo'): bool;
+```
+
+#### Getters
+
+You can use the `getArgument` and `getOption` helpers to get a value from the passed input.
+
+```php
+$this->getArgument('foo'): ?mixed);
+$this->getOption('foo'): ?mixed);
+```
+
+You can also specify a default value by setting the second parameter:
+
+```php
+$this->line('Your name is ' . $this->getArgument('name', 'Guest'));
 ```

@@ -83,8 +83,37 @@ trait WritesToOutput {
 
 trait AccessesArguments {
     protected function options(): array {
+        return $this->options;
+    }
+
+    protected function arguments(): array {
+        return $this->arguments;
+    }
+
+    protected function hasOption(string $name): bool {
+        return isset($this->options[$name]);
+    }
+
+    protected function hasArgument(string $name): bool {
+        return isset($this->arguments[$name]) || isset(array_flip(array_values($this->arguments))[$name]);
+    }
+
+    protected function getOption(string $name, mixed $default = null): mixed {
+        return $this->options[$name] ?? $default;
+    }
+
+    protected function getArgument(string $name, mixed $default = null): mixed {
+        return $this->arguments[$name] ?? $this->getArgumentByValue($name) ?? $default;
+    }
+
+    private function getArgumentByValue(string $value): ?string {
+        $index = array_flip(array_values($this->arguments))[$value] ?? null;
+        return $this->arguments[$index] ?? null;
+    }
+
+    private static function parseOptions(array $options): array {
         $formatted = [];
-        foreach ($this->options as $index => $option) {
+        foreach ($options as $index => $option) {
             $option = ltrim($option, '-');
             if (str_contains($option, '=')) {
                 $parts = explode('=', $option);
@@ -96,9 +125,9 @@ trait AccessesArguments {
         return $formatted;
     }
 
-    protected function arguments(): array {
+    private static function parseArguments(array $arguments): array {
         $formatted = [];
-        foreach ($this->arguments as $index => $argument) {
+        foreach ($arguments as $index => $argument) {
             if (str_contains($argument, '=')) {
                 $parts = explode('=', $argument);
                 $formatted[$parts[0]] = $parts[1];
@@ -109,7 +138,7 @@ trait AccessesArguments {
         return $formatted;
     }
 
-    private function parseArguments(): array {
+    private static function parseCommandArguments(): array {
         global $argc;
         global $argv;
 
@@ -124,7 +153,7 @@ trait AccessesArguments {
             }
         }
 
-        return array($options, $arguments);
+        return array(self::parseOptions($options), self::parseArguments($arguments));
     }
 }
 
@@ -160,7 +189,7 @@ class Command {
     protected function __construct() {
         $this->output = new Output();
 
-        list($this->options, $this->arguments) = $this->parseArguments();
+        list($this->options, $this->arguments) = $this->parseCommandArguments();
     }
 
     public static function main(Closure $logic): int {
