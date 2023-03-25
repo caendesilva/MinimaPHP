@@ -22,6 +22,8 @@ Command::main(function (): void {
 class Dumper {
     public static int $arrayBreakLevel = 2;
 
+    const INDENT = '  ';
+
     protected int $indentationLevel = 0;
     protected bool $inOpenArray = false;
 
@@ -76,7 +78,7 @@ class Dumper {
         $parts = [];
         foreach ($array as $key => $value) {
             if ($this->inOpenArray) {
-                $indent = str_repeat('  ', $this->indentationLevel);
+                $indent = str_repeat(self::INDENT, $this->indentationLevel);
             } else {
                 $indent = '';
             }
@@ -88,7 +90,7 @@ class Dumper {
         }
         if ($this->inOpenArray) {
             $this->indentationLevel--;
-            $indent = str_repeat('  ', $this->indentationLevel);
+            $indent = str_repeat(self::INDENT, $this->indentationLevel);
             return "[\n".implode(",\n", $parts)."\n$indent]";
         } else {
             return '['.implode(', ', $parts).']';
