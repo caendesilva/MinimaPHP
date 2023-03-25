@@ -19,19 +19,19 @@ Command::main(function (): void {
 class Dumper {
     public static function highlight(mixed $data): string {
         if (is_null($data)) {
-            return static::null($string);
+            return static::null($data);
         }
         if (is_string($data)) {
-            return static::string($string);
+            return static::string($data);
         }
         if (is_int($data)) {
-            return static::int($string);
+            return static::int($data);
         }
         if (is_bool($data)) {
-            return static::bool($string);
+            return static::bool($data);
         }
         if (is_array($data)) {
-            return static::array($string);
+            return static::array($data);
         }
         if (is_object($data)) {
             return $data::class;
