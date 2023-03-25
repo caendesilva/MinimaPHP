@@ -103,6 +103,8 @@ Use the `ask` helper to write the prompt to the console, and return the collecte
 $this->line('Hello ' . $this->ask('Name'));
 ```
 
+You can also specify a default value by setting the second parameter of the `ask` helper.
+
 ### Arguments & Options
 
 Minima also makes it easy to access arguments and options passed to the command.
