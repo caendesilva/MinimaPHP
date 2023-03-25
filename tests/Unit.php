@@ -5,6 +5,8 @@ require_once __DIR__ . '/PicoUnit.php';
 
 use PicoUnit as TestCase;
 
+TestCase::$startMessage = "%sRunning unit tests\n";
+
 TestCase::boot(__FILE__);
 
 Command::main(function () {

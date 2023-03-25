@@ -7,6 +7,8 @@ final class PicoUnit
     private const PASSED = "\033[32m".'passed'."\033[0m";
     private const FAILED = "\033[31m".'failed'."\033[0m";
 
+    public static string $startMessage = "%sRunning tests for %s%s\n\n";
+
     private static self $instance;
     private float $startTime;
     private array $contents;
@@ -21,7 +23,7 @@ final class PicoUnit
 
     public static function boot(string $file): void
     {
-        echo sprintf("%sRunning tests for %s%s\n\n", ANSI::GREEN, basename(dirname($file)), ANSI::RESET);
+        echo sprintf(self::$startMessage, ANSI::GREEN, basename(dirname($file)), ANSI::RESET);
 
         self::$instance = new self($file);
     }
