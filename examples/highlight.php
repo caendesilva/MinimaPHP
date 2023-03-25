@@ -42,11 +42,11 @@ class Dumper {
     }
 
     protected static function null(null|string $value): string {
-        return $value;
+        return 'null';
     }
 
     protected static function string(string $value): string {
-        return $value;
+        return "'$value'";
     }
 
     protected static function int(int $value): string {
@@ -54,7 +54,7 @@ class Dumper {
     }
 
     protected static function bool(bool $value): string {
-        return $value;
+        return $value ? 'true' : 'false';
     }
 
     protected static function array(array $array): string {
