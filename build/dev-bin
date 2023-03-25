@@ -15,9 +15,21 @@ interface ARGS {
 
 class CommandRouter {
     public static function handle(): Closure {
+        $route = self::getRoute();
+
         $function = 'WelcomeCommand';
 
         return call_user_func($function);
+    }
+
+    private static function getRoute(): ?string {
+        global $argv;
+
+        if (! isset($argv[1]) || str_starts_with($argv[1], '-')) {
+            return null;
+        }
+
+        return $argv[1];
     }
 }
 
