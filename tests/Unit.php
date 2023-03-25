@@ -8,10 +8,6 @@ use PicoUnit as TestCase;
 TestCase::boot(__FILE__);
 
 Command::main(function () {
-    $this->formatted('<info>Running unit tests!</info>');
-});
-
-Command::main(function () {
     $this->formatted("\n<warning>Testing: ANSI Interface</warning>");
 
     test(ANSI::BLACK === "\033[30m");
