@@ -6,7 +6,8 @@ Command::main(function (): void {
     $this->formatted('<info>Simple console highlighting data dumper</info>');
 
     $this->line(Dumper::highlight([
-        'foo' => 'bar',
+        'foo',
+        'bar' => 'baz',
         'array' => [
             'some',
             'contents',
