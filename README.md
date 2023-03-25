@@ -13,7 +13,7 @@ The main benefit of using MinimaPHP is that it has **zero dependencies**. You th
 
 Copy the `minima.php` file to your project, include it from your main script. You're done.
 
-### Global installer (Linux / Unix / macOS)
+### Global installer (Linux/Unix/macOS)
 
 If you want, you can install the global `Minima` binary. It's a script written in MinimaPHP, and allows you to quickly scaffold new projects.
 
