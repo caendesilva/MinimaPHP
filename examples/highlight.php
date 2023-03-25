@@ -20,6 +20,10 @@ Command::main(function (): void {
 
 class Dumper {
     public static function highlight(mixed $data): string {
+        return (new static)->runHighlighter($data);
+    }
+
+    protected function runHighlighter(mixed $data): string {
         if (is_null($data)) {
             return static::null($data);
         }
