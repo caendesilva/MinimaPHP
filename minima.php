@@ -95,7 +95,7 @@ trait AccessesArguments {
     }
 
     protected function hasArgument(string $name): bool {
-        return isset($this->arguments[$name]);
+        return isset($this->arguments[$name]) || isset(array_flip(array_values($this->arguments))[$name]);
     }
 
     protected function getOption(string $name, mixed $default = null): mixed {
@@ -103,7 +103,12 @@ trait AccessesArguments {
     }
 
     protected function getArgument(string $name, mixed $default = null): mixed {
-        return $this->arguments[$name] ?? $default;
+        return $this->arguments[$name] ?? $this->getArgumentByValue($name) ?? $default;
+    }
+
+    private function getArgumentByValue(string $value): ?string {
+        $index = array_flip(array_values($this->arguments))[$value] ?? null;
+        return $this->arguments[$index] ?? null;
     }
 
     private static function parseOptions(array $options): array {
