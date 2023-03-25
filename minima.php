@@ -82,6 +82,14 @@ trait WritesToOutput {
 }
 
 trait AccessesArguments {
+    protected function options(): array {
+        return $this->options;
+    }
+
+    protected function arguments(): array {
+        return $this->arguments;
+    }
+
     private function parseOptions(array $options): array {
         $formatted = [];
         foreach ($options as $index => $option) {
