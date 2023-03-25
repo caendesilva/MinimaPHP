@@ -207,12 +207,6 @@ if (! function_exists('main')) {
     }
 }
 
-if (! function_exists('highlight')) {
-    function highlight(mixed $value): void {
-        return Highlighter::highlight($value);
-    }
-}
-
 if (! function_exists('dump')) {
     function dump(mixed $value): void {
         var_dump($value);
