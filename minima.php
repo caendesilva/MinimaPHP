@@ -76,8 +76,8 @@ trait WritesToOutput {
     }
 
     /** @example $this->line('Hello ' . $this->ask('Name')); */
-    protected function ask(string $question): string {
-        return Input::readline(ANSI::YELLOW."$question: ".ANSI::RESET);
+    protected function ask(string $question, string $default = ''): string {
+        return Input::readline(ANSI::YELLOW."$question: ".ANSI::RESET) ?: $default;
     }
 }
 
