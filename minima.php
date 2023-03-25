@@ -98,6 +98,14 @@ trait AccessesArguments {
         return isset($this->arguments[$name]);
     }
 
+    protected function getOption(string $name, mixed $default = null): mixed {
+        return $this->options[$name] ?? $default;
+    }
+
+    protected function getArgument(string $name, mixed $default = null): mixed {
+        return $this->arguments[$name] ?? $default;
+    }
+
     private static function parseOptions(array $options): array {
         $formatted = [];
         foreach ($options as $index => $option) {
