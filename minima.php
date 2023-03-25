@@ -162,6 +162,7 @@ class Output {
         file_put_contents('php://stdout', $string);
     }
 
+    /** @deprecated */
     public static function line(string $message = ''): void {
         static::write($message . PHP_EOL);
     }
