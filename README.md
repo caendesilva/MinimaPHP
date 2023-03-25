@@ -129,7 +129,9 @@ If your argument contains spaces, you must quote them, otherwise the parser cons
 
 ### Accessing the options and arguments
 
-Options can be accessed using the `options` array, and arguments using the `arguments` array.
+#### Array access
+
+Options can be accessed using the `options` array, and arguments using the `arguments` array. These will return simple arrays the separated values.
 
 ```php
 Command::main(function () {
