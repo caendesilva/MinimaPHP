@@ -302,7 +302,7 @@ if (! function_exists('main')) {
 if (! function_exists('dump')) {
     function dump(mixed $value, bool $highlight = false): void {
         if ($highlight) {
-            echo Dumper::highlight($value);
+            echo Dumper::highlight($value)."\n";
         } else {
             var_dump($value);
         }
