@@ -81,48 +81,7 @@ trait WritesToOutput {
     }
 }
 
-class Output {
-    public static function write(string $string): void {
-        file_put_contents('php://stdout', $string);
-    }
-
-    public static function line(string $message = ''): void {
-        static::write($message . PHP_EOL);
-    }
-}
-
-class Input {
-    public static function readline(?string $prompt = null): string {
-        return readline($prompt);
-    }
-
-    public static function getline(): string {
-        return trim(fgets(Console::INPUT));
-    }
-}
-
-class Command {
-    use WritesToOutput;
-
-    protected Output $output;
-
-    protected array $options;
-    protected array $arguments;
-
-    protected function __construct() {
-        $this->output = new Output();
-
-        list($this->options, $this->arguments) = $this->parseArguments();
-    }
-
-    public static function main(Closure $logic): int {
-        $command = new static();
-
-        $logic = $logic->bindTo($command, static::class);
-
-        return $logic() ?? 0;
-    }
-
+trait AccessesArguments {
     protected function options(): array {
         $formatted = [];
         foreach ($this->options as $index => $option) {
@@ -166,6 +125,50 @@ class Command {
         }
 
         return array($options, $arguments);
+    }
+}
+
+class Output {
+    public static function write(string $string): void {
+        file_put_contents('php://stdout', $string);
+    }
+
+    public static function line(string $message = ''): void {
+        static::write($message . PHP_EOL);
+    }
+}
+
+class Input {
+    public static function readline(?string $prompt = null): string {
+        return readline($prompt);
+    }
+
+    public static function getline(): string {
+        return trim(fgets(Console::INPUT));
+    }
+}
+
+class Command {
+    use WritesToOutput;
+    use AccessesArguments;
+
+    protected Output $output;
+
+    protected array $options;
+    protected array $arguments;
+
+    protected function __construct() {
+        $this->output = new Output();
+
+        list($this->options, $this->arguments) = $this->parseArguments();
+    }
+
+    public static function main(Closure $logic): int {
+        $command = new static();
+
+        $logic = $logic->bindTo($command, static::class);
+
+        return $logic() ?? 0;
     }
 }
 
