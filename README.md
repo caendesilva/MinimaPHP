@@ -127,7 +127,7 @@ php my-script.php example bar=baz
 
 If your argument contains spaces, you must quote them, otherwise the parser considers them to be separate arguments.
 
-#### Accessing the options and arguments
+### Accessing the options and arguments
 
 Options can be accessed using the `options` array, and arguments using the `arguments` array.
 
