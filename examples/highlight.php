@@ -18,6 +18,9 @@ Command::main(function (): void {
 
 class Dumper {
     public static function highlight(mixed $data): string {
+        if (is_null($data)) {
+            return static::null($string);
+        }
         if (is_string($data)) {
             return static::string($string);
         }
@@ -35,6 +38,10 @@ class Dumper {
         }
 
         return (string) $data;
+    }
+
+    protected static function null(null|string $value): string {
+        return $value;
     }
 
     protected static function string(string $value): string {
