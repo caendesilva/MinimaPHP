@@ -92,3 +92,14 @@ interface ANSI {
 
 $this->line(ANSI::GREEN . $message . ANSI::RESET);
 ```
+
+### Input helpers
+
+#### Asking for input
+
+Use the `ask` helper to write the prompt to the console, and return the collected input.
+
+```php
+$this->line('Hello ' . $this->ask('Name'));
+```
+
