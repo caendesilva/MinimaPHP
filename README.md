@@ -161,8 +161,8 @@ Likewise, arguments accessed through the method are also in an associative array
 Use `hasArgument` and `hasOption` to determine if the argument or option was passed to the command.
 
 ```php
-$this->line('Has argument foo? ' . ($this->hasArgument('foo') ? 'true' : 'false'));
-$this->line('Has option foo? ' . ($this->hasOption('foo') ? 'true' : 'false'));
+$this->hasArgument('foo'): bool;
+$this->hasOption('foo'): bool;
 ```
 
 #### Getters
@@ -170,8 +170,8 @@ $this->line('Has option foo? ' . ($this->hasOption('foo') ? 'true' : 'false'));
 You can use the `getArgument` and `getOption` helpers to get a value from the passed input.
 
 ```php
-$this->line('Value of argument foo: ' . $this->getArgument('foo'));
-$this->line('Value of option foo: ' . $this->getOption('foo'));
+$this->getArgument('foo'): ?mixed);
+$this->getOption('foo'): ?mixed);
 ```
 
 You can also specify a default value by setting the second parameter:
