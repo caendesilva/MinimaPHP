@@ -131,7 +131,7 @@ If your argument contains spaces, you must quote them, otherwise the parser cons
 
 #### Array access
 
-Options can be accessed using the `options` array, and arguments using the `arguments` array. These will return simple arrays the separated values.
+Options can be accessed using the `options` array, and arguments using the `arguments` array. You can also access them through the `options()` and `arguments()` methods.
 
 ```php
 Command::main(function () {
@@ -141,21 +141,7 @@ Command::main(function () {
 });
 ```
 
-For example, this would return the following:
-
-```bash
-php examples/arguments.php example --help -v --foo=bar bar=baz
-
-# Here is the data you passed to the command:
-# Options: --help, -v, --foo=bar
-# Arguments: example, bar=baz
-```
-
-#### Method access
-
-If you want you can use "smarter" helper methods to get options and arguments parsed into a more easily accessible array. Simply replace `->options` with `->options()` and `->arguments` with `->arguments()`.
-
-Options will now be returned as a list like this, where the option name is used as the array key, with the value as the value. If your option is a boolean flag, the value will be set to `true`.
+Options will be returned as a list like this, where the option name is used as the array key, with the value as the value. If your option is a boolean flag, the value will be set to `true`.
 
 ```php
 // --help -v --foo=bar
