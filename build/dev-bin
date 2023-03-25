@@ -51,6 +51,8 @@ function WelcomeCommand(): Closure {
 
         $this->warning("\nAvailable commands:");
         $this->formatted('  about <comment> - Show this screen</>');
+        $this->formatted('  init <comment> - Create a project in the current directory</>');
+        $this->formatted('  new <name> <comment> - Create a new project in the specified directory</>');
     };
 }
 
