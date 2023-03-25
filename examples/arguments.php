@@ -23,7 +23,7 @@ function implode_array(array $array): string
     $merged = [];
     foreach ($array as $key => $value) {
         if (is_bool($value)) {
-            $value = $value ? "true" : "false";
+            $value = print_bool($value);
         } elseif (is_string($value)) {
             $value = "'$value'";
         }
@@ -33,4 +33,8 @@ function implode_array(array $array): string
         $merged[] = "[$key => $value]";
     }
     return implode(', ', $merged);
+}
+
+function print_bool(bool $bool): string {
+    return $bool ? "true" : "false";
 }
