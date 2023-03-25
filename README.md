@@ -151,7 +151,7 @@ php examples/arguments.php example --help -v --foo=bar bar=baz
 # Arguments: example, bar=baz
 ```
 
-#### Method access 
+#### Method access
 
 If you want you can use "smarter" helper methods to get options and arguments parsed into a more easily accessible array. Simply replace `->options` with `->options()` and `->arguments` with `->arguments()`.
 
