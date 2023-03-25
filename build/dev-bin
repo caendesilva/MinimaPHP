@@ -115,7 +115,20 @@ PHP);
 
 function NewCommand(): Closure {
     return function (): void {
-        // 
+        $baseDir = getcwd();
+    
+        if ($this->getArgument(1)) {
+            $dirName = $this->getArgument(1);
+        } else {
+            while (empty($dirName)) {
+                $dirName = $this->ask('Enter the project name');
+            }
+        }
+
+        while (file_exists("$baseDir/$dirName")) {
+            $this->error("A file or directory named $dirName already exists in this directory! Please pick a new name.");
+            $dirName = $this->ask('Enter a new name');
+        }
     };
 }
 
