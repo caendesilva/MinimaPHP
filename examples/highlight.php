@@ -36,4 +36,20 @@ class Dumper {
 
         return (string) $data;
     }
+
+    protected static function string(string $value): string {
+        return $value;
+    }
+
+    protected static function int(int $value): string {
+        return $value;
+    }
+
+    protected static function bool(bool $value): string {
+        return $value;
+    }
+
+    protected static function array(array $value): string {
+        return $value;
+    }
 }
