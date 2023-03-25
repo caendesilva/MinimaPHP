@@ -6,6 +6,23 @@ Minimal PHP micro-framework for creating general purpose command-line scripts
 
 Copy the `minima.php` file to your project, include it from your main script. You're done.
 
+### Global installer (Linux / Unix / macOS)
+
+If you want, you can install the global `Minima` binary. It's a script written in MinimaPHP, and allows you to quickly scaffold new projects.
+
+```bash
+curl https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/bin/minima -o minima
+chmod +x minima
+cp minima /usr/local/bin/minima
+rm minima
+```
+
+You can then call the command from anywhere, like this:
+
+```bash
+minima new my-project
+```
+
 ## Usage
 
 Write your logic in a closure through the `Command::main()` method or the `main()` function. You will then be able to access all the helpers through the `$this` variable.
