@@ -68,14 +68,29 @@ class Dumper {
     }
 
     protected function array(array $array): string {
+        $this->indentationLevel++;
+        if ($this->indentationLevel >= static::$arrayBreakLevel -1) {
+            $this->inOpenArray = true;
+        }
         $parts = [];
         foreach ($array as $key => $value) {
-            if (is_int($key)) {
-                $parts[] = $this->runHighlighter($value);
+            if ($this->inOpenArray) {
+                $indent = str_repeat('  ', $this->indentationLevel);
             } else {
-                $parts[] = $this->string($key).' => '.$this->runHighlighter($value);
+                $indent = '';
+            }
+            if (is_int($key)) {
+                $parts[] = $indent.$this->runHighlighter($value);
+            } else {
+                $parts[] = $indent.$this->string($key).' => '.$this->runHighlighter($value);
             }
         }
-        return '['.implode(', ', $parts).']';
+        if ($this->inOpenArray) {
+            $this->indentationLevel--;
+            $indent = str_repeat('  ', $this->indentationLevel);
+            return "[\n".implode(",\n", $parts)."\n$indent]";
+        } else {
+            return '['.implode(', ', $parts).']';
+        }
     }
 }
