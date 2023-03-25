@@ -82,9 +82,9 @@ trait WritesToOutput {
 }
 
 trait AccessesArguments {
-    protected function options(): array {
+    private function parseOptions(array $options): array {
         $formatted = [];
-        foreach ($this->options as $index => $option) {
+        foreach ($options as $index => $option) {
             $option = ltrim($option, '-');
             if (str_contains($option, '=')) {
                 $parts = explode('=', $option);
@@ -96,9 +96,9 @@ trait AccessesArguments {
         return $formatted;
     }
 
-    protected function arguments(): array {
+    private function parseArguments(array $arguments): array {
         $formatted = [];
-        foreach ($this->arguments as $index => $argument) {
+        foreach ($arguments as $index => $argument) {
             if (str_contains($argument, '=')) {
                 $parts = explode('=', $argument);
                 $formatted[$parts[0]] = $parts[1];
@@ -124,7 +124,7 @@ trait AccessesArguments {
             }
         }
 
-        return array($options, $arguments);
+        return array($this->parseOptions($options), $this->parseArguments($arguments));
     }
 }
 
