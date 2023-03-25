@@ -82,7 +82,9 @@ function InitCommand(): Closure {
             $this->error('Could not find a copy of the Minima source code.');
             $prompt = $this->ask('Would you like to download the latest version? (y/N)');
             if (str_starts_with($prompt, 'y')) {
+                $this->write('Downloading! This may take a second... ');
                 downloadSourceTo($sourcePath);
+                $this->line('Download complete!');
             } else {
                 $this->warning('Aborting.');
                 return 130; 
