@@ -8,7 +8,7 @@ use PicoUnit as TestCase;
 TestCase::boot(__FILE__);
 
 Command::main(function () {
-    $this->formatted("<warning>Testing: ANSI Interface</warning>");
+    $this->formatted("\n<warning>Testing: ANSI Interface</warning>");
 
     test(ANSI::BLACK === "\033[30m");
     test(ANSI::RED === "\033[31m");
