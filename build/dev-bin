@@ -7,6 +7,8 @@ interface ARGS {
     public const COMMANDS = [
         null => 'WelcomeCommand',
         'about' => 'WelcomeCommand',
+        'init' => 'InitCommand',
+        'new' => 'NewCommand',
     ];
 
     public const OPTS = [
@@ -53,6 +55,18 @@ function WelcomeCommand(): Closure {
         $this->formatted('  about <comment> - Show this screen</>');
         $this->formatted('  init <comment> - Create a project in the current directory</>');
         $this->formatted('  new <name> <comment> - Create a new project in the specified directory</>');
+    };
+}
+
+function InitCommand(): Closure {
+    return function (): void {
+        // 
+    };
+}
+
+function NewCommand(): Closure {
+    return function (): void {
+        // 
     };
 }
 
