@@ -13,9 +13,17 @@ interface ARGS {
     ];
 }
 
-$function = function (): void {
-    $this->formatted('<info>Welcome to MinimaPHP!</info> <comment>You are running version '.Minima::VERSION.'.</comment>');
-};
+class CommandRouter {
+    public static function handle(): Closure {
+        $function = function (): void {
+            $this->formatted('<info>Welcome to MinimaPHP!</info> <comment>You are running version '.Minima::VERSION.'.</comment>');
+        };
+
+        return $function;
+    }
+}
+
+$function = CommandRouter::handle();
 
 $exitCode = Command::main($function);
 
