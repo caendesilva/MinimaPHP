@@ -15,12 +15,16 @@ interface ARGS {
 
 class CommandRouter {
     public static function handle(): Closure {
-        $function = function (): void {
-            $this->formatted('<info>Welcome to MinimaPHP!</info> <comment>You are running version '.Minima::VERSION.'.</comment>');
-        };
+        $function = 'WelcomeCommand';
 
-        return $function;
+        return call_user_func($function);
     }
+}
+
+function WelcomeCommand(): Closure {
+    return function (): void {
+        $this->formatted('<info>Welcome to MinimaPHP!</info> <comment>You are running version '.Minima::VERSION.'.</comment>');
+    };
 }
 
 $function = CommandRouter::handle();
