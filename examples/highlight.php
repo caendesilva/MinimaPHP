@@ -20,7 +20,10 @@ Command::main(function (): void {
     ]));
 });
 
-interface Theme {
+class Dumper {
+    public static int $arrayBreakLevel = 2;
+
+    const INDENT = '  ';
     const ARRAY_OPEN = ANSI::WHITE.'['.ANSI::RESET;
     const ARRAY_CLOSE = ANSI::WHITE.']'.ANSI::RESET;
     const STRING_OPEN = ANSI::BLUE."'".ANSI::GREEN;
@@ -32,12 +35,6 @@ interface Theme {
     const OBJECT_OPEN = ANSI::YELLOW;
     const OBJECT_CLOSE = ANSI::RESET;
     const NULL = ANSI::RED.'null'.ANSI::RESET;
-}
-
-class Dumper {
-    public static int $arrayBreakLevel = 2;
-
-    const INDENT = '  ';
 
     protected int $indentationLevel = 0;
     protected bool $inOpenArray = false;
@@ -63,26 +60,26 @@ class Dumper {
             return $this->array($data);
         }
         if (is_object($data)) {
-            return Theme::OBJECT_OPEN .$data::class.Theme::OBJECT_CLOSE;
+            return static::OBJECT_OPEN .$data::class.static::OBJECT_CLOSE;
         }
 
         return (string) $data;
     }
 
     protected function null(null|string $value): string {
-        return Theme::NULL;
+        return static::NULL;
     }
 
     protected function string(string $value): string {
-        return Theme::STRING_OPEN.$value.Theme::STRING_CLOSE;
+        return static::STRING_OPEN.$value.static::STRING_CLOSE;
     }
 
     protected function int(int $value): string {
-        return THEME::INTEGER_OPEN .$value.Theme::INTEGER_CLOSE;
+        return static::INTEGER_OPEN .$value.static::INTEGER_CLOSE;
     }
 
     protected function bool(bool $value): string {
-        return Theme::BOOLEAN_OPEN .($value ? 'true' : 'false').Theme::BOOLEAN_CLOSE;
+        return static::BOOLEAN_OPEN .($value ? 'true' : 'false').static::BOOLEAN_CLOSE;
     }
 
     protected function array(array $array): string {
@@ -106,9 +103,9 @@ class Dumper {
         if ($this->inOpenArray) {
             $this->indentationLevel--;
             $indent = str_repeat(self::INDENT, $this->indentationLevel);
-            return Theme::ARRAY_OPEN."\n".implode(",\n", $parts)."\n$indent".Theme::ARRAY_CLOSE;
+            return static::ARRAY_OPEN."\n".implode(",\n", $parts)."\n$indent".static::ARRAY_CLOSE;
         } else {
-            return Theme::ARRAY_OPEN.''.implode(', ', $parts).''.Theme::ARRAY_CLOSE;
+            return static::ARRAY_OPEN.''.implode(', ', $parts).''.static::ARRAY_CLOSE;
         }
     }
 }
