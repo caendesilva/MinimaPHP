@@ -20,6 +20,20 @@ Command::main(function (): void {
     ]));
 });
 
+interface Theme {
+    const ARRAY_OPEN = ANSI::WHITE.'['.ANSI::RESET;
+    const ARRAY_CLOSE = ANSI::WHITE.']'.ANSI::RESET;
+    const STRING_OPEN = ANSI::BLUE."'".ANSI::GREEN;
+    const STRING_CLOSE = ANSI::BLUE."'".ANSI::RESET;
+    const INTEGER_OPEN = ANSI::YELLOW;
+    const INTEGER_CLOSE = ANSI::RESET;
+    const BOOLEAN_OPEN = ANSI::RED;
+    const BOOLEAN_CLOSE = ANSI::RESET;
+    const OBJECT_OPEN = ANSI::YELLOW;
+    const OBJECT_CLOSE = ANSI::RESET;
+    const NULL = ANSI::RED.'null'.ANSI::RESET;
+}
+
 class Dumper {
     public static int $arrayBreakLevel = 2;
 
@@ -49,26 +63,26 @@ class Dumper {
             return $this->array($data);
         }
         if (is_object($data)) {
-            return $data::class;
+            return Theme::OBJECT_OPEN .$data::class.Theme::OBJECT_CLOSE;
         }
 
         return (string) $data;
     }
 
     protected function null(null|string $value): string {
-        return 'null';
+        return Theme::NULL;
     }
 
     protected function string(string $value): string {
-        return "'$value'";
+        return Theme::STRING_OPEN.$value.Theme::STRING_CLOSE;
     }
 
     protected function int(int $value): string {
-        return $value;
+        return THEME::INTEGER_OPEN .$value.Theme::INTEGER_CLOSE;
     }
 
     protected function bool(bool $value): string {
-        return $value ? 'true' : 'false';
+        return Theme::BOOLEAN_OPEN .($value ? 'true' : 'false').Theme::BOOLEAN_CLOSE;
     }
 
     protected function array(array $array): string {
@@ -92,9 +106,9 @@ class Dumper {
         if ($this->inOpenArray) {
             $this->indentationLevel--;
             $indent = str_repeat(self::INDENT, $this->indentationLevel);
-            return "[\n".implode(",\n", $parts)."\n$indent]";
+            return Theme::ARRAY_OPEN."\n".implode(",\n", $parts)."\n$indent".Theme::ARRAY_CLOSE;
         } else {
-            return '['.implode(', ', $parts).']';
+            return Theme::ARRAY_OPEN.''.implode(', ', $parts).''.Theme::ARRAY_CLOSE;
         }
     }
 }
