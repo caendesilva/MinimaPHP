@@ -58,6 +58,10 @@ function WelcomeCommand(): Closure {
     };
 }
 
+class SystemHelper {
+    //
+}
+
 function InitCommand(): Closure {
     return function (): void {
         $baseDir = getcwd();
