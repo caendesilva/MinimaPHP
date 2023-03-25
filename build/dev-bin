@@ -91,6 +91,9 @@ function InitCommand(): Closure {
             }
         }
 
+        copy($sourcePath, "$baseDir/minima.php");
+        $this->line('Created minima.php');
+
         return 0;
     };
 }
