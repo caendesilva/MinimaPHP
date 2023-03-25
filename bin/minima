@@ -323,7 +323,7 @@ if (! function_exists('dd')) {
 // end minima.php
 
 interface Build {
-    const REVISION = '47446db';
+    const REVISION = '933b191';
 }
 
 interface ARGS {
@@ -374,7 +374,7 @@ class CommandRouter {
 function WelcomeCommand(): Closure {
     return function (): void {
         if ($this->hasOption('version') | $this->hasOption('v')) {
-            $this->line('MinimaPHP - '.Minima::VERSION);
+            $this->line('MinimaPHP - '.Minima::VERSION . ' (#' .Build::REVISION .')');
             return;
         }
 

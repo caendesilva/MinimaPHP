@@ -55,7 +55,7 @@ class CommandRouter {
 function WelcomeCommand(): Closure {
     return function (): void {
         if ($this->hasOption('version') | $this->hasOption('v')) {
-            $this->line('MinimaPHP - '.Minima::VERSION);
+            $this->line('MinimaPHP - '.Minima::VERSION . ' (#' .Build::REVISION .')');
             return;
         }
 
