@@ -20,8 +20,7 @@ If you want, you can install the global `Minima` binary. It's a script written i
 ```bash
 curl https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/bin/minima -o minima
 chmod +x minima
-cp minima /usr/local/bin/minima
-rm minima
+mv minima /usr/local/bin/minima
 ```
 
 You can then call the command from anywhere, like this:
