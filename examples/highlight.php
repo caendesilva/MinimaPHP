@@ -14,6 +14,7 @@ Command::main(function (): void {
             'bool' => true,
             'integer' => 10,
         ],
+        'object' => new Dumper(),
     ]));
 });
 
