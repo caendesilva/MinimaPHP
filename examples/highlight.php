@@ -18,6 +18,22 @@ Command::main(function (): void {
 
 class Dumper {
     public static function highlight(mixed $data): string {
-        return //
+        if (is_string($data)) {
+            return static::string($string);
+        }
+        if (is_int($data)) {
+            return static::int($string);
+        }
+        if (is_bool($data)) {
+            return static::bool($string);
+        }
+        if (is_array($data)) {
+            return static::array($string);
+        }
+        if (is_object($data)) {
+            return $data::class;
+        }
+
+        return (string) $data;
     }
 }
