@@ -123,6 +123,20 @@ class Command {
         return $logic() ?? 0;
     }
 
+    protected function options(): array {
+        $formatted = [];
+        foreach ($this->options as $index => $option) {
+            $option = ltrim($option, '-');
+            if (str_contains($option, '=')) {
+                $parts = explode('=', $option);
+                $formatted[$parts[0]] = $parts[1];
+            } else {
+                $formatted[$option] = true;
+            }
+        }
+        return $formatted;
+    }
+
     private function parseArguments(): array {
         global $argc;
         global $argv;
