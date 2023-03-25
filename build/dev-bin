@@ -65,6 +65,12 @@ function InitCommand(): Closure {
             $this->error('File minima.php already exists in this directory!');
             exit(409);    
         }
+
+        if ($this->hasOption('name')) {
+            $mainName = $this->getOption('name');
+        } else {
+            $mainName = basename(dirname($baseDir));
+        }
     };
 }
 
