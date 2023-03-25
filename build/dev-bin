@@ -5,7 +5,7 @@ require_once __DIR__.'/../minima.php';
 
 interface ARGS {
     public const COMMANDS = [
-        //
+        null => WelcomeCommand::class,
     ];
 
     public const OPTS = [
