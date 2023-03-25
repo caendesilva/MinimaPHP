@@ -12,7 +12,7 @@ Command::main(function () {
 });
 
 Command::main(function () {
-    $this->info('Testing: ANSI Interface');
+    $this->formatted("\n<warning>Testing: ANSI Interface</warning>");
 
     test(ANSI::BLACK === "\033[30m");
     test(ANSI::RED === "\033[31m");
@@ -27,7 +27,7 @@ Command::main(function () {
 });
 
 Command::main(function () {
-    $this->info('Testing: XML_ANSI Interface');
+    $this->formatted("\n<warning>Testing: XML_ANSI Interface</warning>");
 
     test(XML_ANSI::INFO === ANSI::GREEN);
     test(XML_ANSI::WARNING === ANSI::YELLOW);
@@ -37,7 +37,7 @@ Command::main(function () {
 });
 
 Command::main(function () {
-    $this->info('Testing: WritesToConsole');
+    $this->formatted("\n<warning>Testing: WritesToConsole</warning>");
 
     $this->line('---------');
     $this->write('write');
