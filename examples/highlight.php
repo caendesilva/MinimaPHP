@@ -19,6 +19,10 @@ Command::main(function (): void {
 });
 
 class Dumper {
+    public static int $arrayBreakLevel = 2;
+
+    protected int $indentationLevel = 0;
+
     public static function highlight(mixed $data): string {
         return (new static)->runHighlighter($data);
     }
