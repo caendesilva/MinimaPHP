@@ -103,3 +103,38 @@ Use the `ask` helper to write the prompt to the console, and return the collecte
 $this->line('Hello ' . $this->ask('Name'));
 ```
 
+### Arguments & Options
+
+Minima also makes it easy to access arguments and options passed to the command.
+
+#### Using options
+
+Options are defined as any argument starting with `-` or `--` like any of the following:
+
+```bash
+php my-script.php -v --help --foo=bar
+```
+
+These types of arguments are generally optional, hence the name, and when not supplied with any extra data like the `foo=bar` example, are usually used as boolean flags.
+
+#### Using arguments
+
+Arguments are generally required, and can either be positional, or keyed.
+
+```bash
+php my-script.php example bar=baz
+```
+
+If your argument contains spaces, you must quote them, otherwise the parser considers them to be separate arguments.
+
+#### Accessing the options and arguments
+
+Options can be accessed using the `options` array, and arguments using the `arguments` array.
+
+```php
+Command::main(function () {
+    $this->info('Here is the data you passed to the command:');
+    $this->line('Options: ' . implode(', ', $this->options));
+    $this->line('Arguments: ' . implode(', ', $this->arguments));
+});
+```
