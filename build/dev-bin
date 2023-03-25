@@ -3,6 +3,10 @@
 
 require_once __DIR__.'/../minima.php';
 
+interface Build {
+    const REVISION = 'dev';
+}
+
 interface ARGS {
     public const COMMANDS = [
         null => 'WelcomeCommand',
