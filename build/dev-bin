@@ -80,6 +80,13 @@ function InitCommand(): Closure {
         $sourcePath = __DIR__ .'/minima.php';
         if (! file_exists($sourcePath)) {
             $this->error('Could not find a copy of the Minima source code.');
+            $prompt = $this->ask('Would you like to download the latest version? (y/N)');
+            if (str_starts_with($prompt, 'y')) {
+                downloadSourceTo($sourcePath);
+            } else {
+                $this->warning('Aborting.');
+                return 130; 
+            }
         }
 
         return 0;
