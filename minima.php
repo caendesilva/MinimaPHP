@@ -90,6 +90,14 @@ trait AccessesArguments {
         return $this->arguments;
     }
 
+    protected function hasOption(string $name): bool {
+        return isset($this->options[$name]);
+    }
+
+    protected function hasArgument(string $name): bool {
+        return isset($this->arguments[$name]);
+    }
+
     private static function parseOptions(array $options): array {
         $formatted = [];
         foreach ($options as $index => $option) {
