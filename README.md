@@ -29,3 +29,7 @@ exit(Command::main(function (): int {
     return 1;
 }));
 ```
+
+## Interacting with I/O
+
+Minima is designed to abstract away the lower level I/O calls, and using these helpers is what makes the framework helpful, compared to having to deal with these yourself.
