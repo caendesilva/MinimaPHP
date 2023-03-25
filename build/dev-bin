@@ -59,7 +59,9 @@ function WelcomeCommand(): Closure {
 }
 
 class SystemHelper {
-    //
+    public static function programPath(): string {
+        return $_SERVER['HOME'] . DIRECTORY_SEPARATOR . 'minima';
+    }
 }
 
 function InitCommand(): Closure {
