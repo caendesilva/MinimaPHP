@@ -155,3 +155,12 @@ Likewise, arguments accessed through the method are also in an associative array
 // example foo=bar baz
 [0 => 'example', 'foo' => 'bar', 2 => 'baz']
 ```
+
+#### State helpers
+
+Use `hasArgument` and `hasOption` to determine if the argument or option was passed to the command.
+
+```php
+$this->line('Has argument foo? ' . ($this->hasArgument('foo') ? 'true' : 'false'));
+$this->line('Has option foo? ' . ($this->hasOption('foo') ? 'true' : 'false'));
+```
