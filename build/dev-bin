@@ -59,11 +59,11 @@ function WelcomeCommand(): Closure {
 }
 
 function InitCommand(): Closure {
-    return function (): void {
+    return function (): int {
         $baseDir = getcwd();
         if (file_exists("$baseDir/minima.php")) {
             $this->error('File minima.php already exists in this directory!');
-            exit(409);    
+            return 409;    
         }
 
         if ($this->hasOption('name')) {
