@@ -81,6 +81,53 @@ trait WritesToOutput {
     }
 }
 
+trait AccessesArguments {
+    protected function options(): array {
+        $formatted = [];
+        foreach ($this->options as $index => $option) {
+            $option = ltrim($option, '-');
+            if (str_contains($option, '=')) {
+                $parts = explode('=', $option);
+                $formatted[$parts[0]] = $parts[1];
+            } else {
+                $formatted[$option] = true;
+            }
+        }
+        return $formatted;
+    }
+
+    protected function arguments(): array {
+        $formatted = [];
+        foreach ($this->arguments as $index => $argument) {
+            if (str_contains($argument, '=')) {
+                $parts = explode('=', $argument);
+                $formatted[$parts[0]] = $parts[1];
+            } else {
+                $formatted[$index] = $argument;
+            }
+        }
+        return $formatted;
+    }
+
+    private function parseArguments(): array {
+        global $argc;
+        global $argv;
+
+        $options = [];
+        $arguments = [];
+
+        for($i = 1; $i < $argc; $i++) {
+            if (str_starts_with($argv[$i], '-')) {
+                $options[] = $argv[$i];
+            } else {
+                $arguments[] = $argv[$i];
+            }
+        }
+
+        return array($options, $arguments);
+    }
+}
+
 class Output {
     public static function write(string $string): void {
         file_put_contents('php://stdout', $string);
@@ -103,6 +150,7 @@ class Input {
 
 class Command {
     use WritesToOutput;
+    use AccessesArguments;
 
     protected Output $output;
 
@@ -121,24 +169,6 @@ class Command {
         $logic = $logic->bindTo($command, static::class);
 
         return $logic() ?? 0;
-    }
-
-    private function parseArguments(): array {
-        global $argc;
-        global $argv;
-
-        $options = [];
-        $arguments = [];
-
-        for($i = 1; $i < $argc; $i++) {
-            if (str_starts_with($argv[$i], '-')) {
-                $options[] = $argv[$i];
-            } else {
-                $arguments[] = $argv[$i];
-            }
-        }
-
-        return array($options, $arguments);
     }
 }
 
