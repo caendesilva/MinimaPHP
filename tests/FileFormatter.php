@@ -7,39 +7,14 @@ require_once __DIR__ . '/../minima.php';
 Command::main(function () {
     $this->info('Formatting files!');
 
-    $directories = [
-        __DIR__ . '/../tests',
-        __DIR__ . '/../examples'
-    ];
+    $glob = glob(__DIR__ . '/../{*,**/*}.*', GLOB_BRACE);
+    $files = [];
 
-    $allFiles = [];
-    $files = glob(__DIR__ . '/../*.php', GLOB_BRACE);
-
-    foreach ($files as $file) {
+    foreach ($glob as $file) {
         if (is_file($file)) {
-            $allFiles[] = $file;
+            $files[] = $file;
         }
     }
-
-    foreach ($directories as $dir) {
-        $files = glob($dir . '/**/*', GLOB_BRACE);
-
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                $allFiles[] = $file;
-            }
-        }
-
-        $files = glob($dir . '/*', GLOB_BRACE);
-
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                $allFiles[] = $file;
-            }
-        }
-    }
-
-    $files = $allFiles;
 
     foreach ($files as $file) {
         $this->line("Formatting ".basename($file));
