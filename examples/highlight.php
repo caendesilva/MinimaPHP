@@ -5,7 +5,7 @@ require_once 'minima.php';
 Command::main(function (): void {
     $this->formatted('<info>Simple console highlighting data dumper</info>');
 
-    $this->line(Dumper::highlight([
+    dump([
         'foo',
         'bar' => 'baz',
         'array' => [
@@ -17,5 +17,5 @@ Command::main(function (): void {
         ],
         'object' => new Dumper(),
         'null' => null
-    ]));
+    ], true);
 });

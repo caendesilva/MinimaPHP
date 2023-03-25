@@ -300,14 +300,18 @@ if (! function_exists('main')) {
 }
 
 if (! function_exists('dump')) {
-    function dump(mixed $value): void {
-        var_dump($value);
+    function dump(mixed $value, bool $highlight = false): void {
+        if ($highlight) {
+            echo Dumper::highlight($value);
+        } else {
+            var_dump($value);
+        }
     }
 }
 
 if (! function_exists('dd')) {
-    function dd(mixed $value): never {
-        dump($value);
+    function dd(mixed $value, bool $highlight = false): never {
+        dump($value, $highlight);
         die(1);
     }
 }
