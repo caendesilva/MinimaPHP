@@ -90,7 +90,7 @@ trait AccessesArguments {
         return $this->arguments;
     }
 
-    private function parseOptions(array $options): array {
+    private static function parseOptions(array $options): array {
         $formatted = [];
         foreach ($options as $index => $option) {
             $option = ltrim($option, '-');
@@ -104,7 +104,7 @@ trait AccessesArguments {
         return $formatted;
     }
 
-    private function parseArguments(array $arguments): array {
+    private static function parseArguments(array $arguments): array {
         $formatted = [];
         foreach ($arguments as $index => $argument) {
             if (str_contains($argument, '=')) {
@@ -117,7 +117,7 @@ trait AccessesArguments {
         return $formatted;
     }
 
-    private function parseCommandArguments(): array {
+    private static function parseCommandArguments(): array {
         global $argc;
         global $argv;
 
@@ -132,7 +132,7 @@ trait AccessesArguments {
             }
         }
 
-        return array($this->parseOptions($options), $this->parseArguments($arguments));
+        return array(self::parseOptions($options), self::parseArguments($arguments));
     }
 }
 
