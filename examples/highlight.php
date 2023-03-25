@@ -13,6 +13,7 @@ Command::main(function (): void {
             'contents',
             'bool' => true,
             'integer' => 10,
+            'deep' => ['array']
         ],
         'object' => new Dumper(),
     ]));
