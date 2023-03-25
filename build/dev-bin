@@ -114,7 +114,7 @@ PHP);
 }
 
 function NewCommand(): Closure {
-    return function (): void {
+    return function (): int {
         $baseDir = getcwd();
     
         if ($this->getArgument(1)) {
@@ -131,6 +131,10 @@ function NewCommand(): Closure {
         }
 
         mkdir("$baseDir/$dirName");
+        global $argv;
+        $argv[2] = 'new';
+        $argv[3] = "--name=$dirName";
+        return Command::main(InitCommand());
     };
 }
 
