@@ -58,18 +58,27 @@ function WelcomeCommand(): Closure {
     };
 }
 
+class Installer {
+    public static ?string $baseDir = null;
+    public static ?string $mainName = null;
+}
+
 function InitCommand(): Closure {
     return function (): int {
-        $baseDir = getcwd();
+        $baseDir = Installer::$baseDir ?? getcwd();
         if (file_exists("$baseDir/minima.php")) {
             $this->error('File minima.php already exists in this directory!');
             return 409;    
         }
 
-        if ($this->hasOption('name')) {
-            $mainName = $this->getOption('name');
+        if (Installer::$mainName) {
+            $mainName = Installer::$mainName;
         } else {
-            $mainName = basename($baseDir);
+            if ($this->hasOption('name')) {
+                $mainName = $this->getOption('name');
+            } else {
+                $mainName = basename($baseDir);
+            }
         }
 
         while (file_exists("$baseDir/$mainName.php")) {
@@ -131,9 +140,8 @@ function NewCommand(): Closure {
         }
 
         mkdir("$baseDir/$dirName");
-        global $argv;
-        $argv[2] = 'new';
-        $argv[3] = "--name=$dirName";
+        Installer::$baseDir = "$baseDir/$dirName";
+        Installer::$baseDir = $dirName;
         return Command::main(InitCommand());
     };
 }
