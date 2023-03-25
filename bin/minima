@@ -321,6 +321,10 @@ if (! function_exists('dd')) {
 
 // end minima.php
 
+interface Build {
+    const REVISION = '47446db';
+}
+
 interface ARGS {
     public const COMMANDS = [
         null => 'WelcomeCommand',
