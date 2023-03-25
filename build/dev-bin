@@ -17,7 +17,11 @@ class CommandRouter {
     public static function handle(): Closure {
         $route = self::getRoute();
 
-        $function = ARGS::COMMANDS[$route];
+        $function = ARGS::COMMANDS[$route] ?? null;
+
+        if ($function === null || ! function_exists($function)) {
+            return self::CommandNotFound();
+        }
 
         return call_user_func($function);
     }
@@ -30,6 +34,13 @@ class CommandRouter {
         }
 
         return $argv[1];
+    }
+
+    private static function CommandNotFound(): Closure {
+        return function (): int {
+            $this->error('Command not found!');
+            return 404;
+        };
     }
 }
 
