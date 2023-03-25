@@ -109,7 +109,7 @@ trait AccessesArguments {
         return $formatted;
     }
 
-    private function parseArguments(): array {
+    private function parseCommandArguments(): array {
         global $argc;
         global $argv;
 
@@ -160,7 +160,7 @@ class Command {
     protected function __construct() {
         $this->output = new Output();
 
-        list($this->options, $this->arguments) = $this->parseArguments();
+        list($this->options, $this->arguments) = $this->parseCommandArguments();
     }
 
     public static function main(Closure $logic): int {
