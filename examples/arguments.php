@@ -7,7 +7,7 @@ Command::main(function () {
     $this->line('Options: ' . implode(', ', $this->options));
     $this->line('Arguments: ' . implode(', ', $this->arguments));
 
-    $this->warning('Formatted versions:');
+    $this->formatted('<comment>Formatted versions:</>');
     $this->line('Options: ' . implode_array($this->options()));
     $this->line('Arguments: ' . implode_array($this->arguments()));
 });
