@@ -330,7 +330,8 @@ interface ARGS {
     ];
 
     public const OPTS = [
-        //
+        'version',
+        'v'
     ];
 }
 
@@ -367,6 +368,11 @@ class CommandRouter {
 
 function WelcomeCommand(): Closure {
     return function (): void {
+        if ($this->hasOption('version') | $this->hasOption('v')) {
+            $this->line('MinimaPHP - '.Minima::VERSION);
+            return;
+        }
+
         $this->formatted('<info>Welcome to MinimaPHP!</info> <comment>You are running version '.Minima::VERSION.'.</comment>');
 
         $this->warning("\nAvailable commands:");
