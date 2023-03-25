@@ -3,6 +3,17 @@
 
 require_once __DIR__.'/../minima.php';
 
+/** @internal */
+interfact ARGS {
+    public const COMMANDS = [
+        //
+    ];
+
+    public const OPTS = [
+        //
+    ];
+}
+
 $exitCode = Command::main(function (): void {
     $this->formatted('<info>Welcome to MinimaPHP!</info> <comment>You are running version '.Minima::VERSION.'.</comment>');
 });
