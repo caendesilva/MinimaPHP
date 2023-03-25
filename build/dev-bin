@@ -94,6 +94,19 @@ function InitCommand(): Closure {
         copy($sourcePath, "$baseDir/minima.php");
         $this->line('Created minima.php');
 
+        file_put_contents("$baseDir/$mainName.php", <<<'PHP'
+<?php
+
+require_once __DIR__.'/minima.php';
+
+Command::main(function (): void {
+    $this->info('Welcome to MinimaPHP!');
+});
+
+PHP);
+
+        $this->line("Created $mainName.php");
+
         return 0;
     };
 }
