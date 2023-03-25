@@ -16,6 +16,7 @@ Command::main(function (): void {
             'deep' => ['array']
         ],
         'object' => new Dumper(),
+        'null' => null
     ]));
 });
 
