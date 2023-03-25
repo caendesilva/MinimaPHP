@@ -173,3 +173,9 @@ You can use the `getArgument` and `getOption` helpers to get a value from the pa
 $this->line('Value of argument foo: ' . $this->getArgument('foo'));
 $this->line('Value of option foo: ' . $this->getOption('foo'));
 ```
+
+You can also specify a default value by setting the second parameter:
+
+```php
+$this->line('Your name is ' . $this->getArgument('name', 'Guest'));
+```
