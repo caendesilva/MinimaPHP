@@ -1,0 +1,157 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/../minima.php';
+
+interface ARGS {
+    public const COMMANDS = [
+        null => 'WelcomeCommand',
+        'about' => 'WelcomeCommand',
+        'init' => 'InitCommand',
+        'new' => 'NewCommand',
+    ];
+
+    public const OPTS = [
+        //
+    ];
+}
+
+class CommandRouter {
+    public static function handle(): Closure {
+        $route = self::getRoute();
+
+        $function = ARGS::COMMANDS[$route] ?? null;
+
+        if ($function === null || ! function_exists($function)) {
+            return self::CommandNotFound();
+        }
+
+        return call_user_func($function);
+    }
+
+    private static function getRoute(): ?string {
+        global $argv;
+
+        if (! isset($argv[1]) || str_starts_with($argv[1], '-')) {
+            return null;
+        }
+
+        return $argv[1];
+    }
+
+    private static function CommandNotFound(): Closure {
+        return function (): int {
+            $this->error('Command not found!');
+            return 404;
+        };
+    }
+}
+
+function WelcomeCommand(): Closure {
+    return function (): void {
+        $this->formatted('<info>Welcome to MinimaPHP!</info> <comment>You are running version '.Minima::VERSION.'.</comment>');
+
+        $this->warning("\nAvailable commands:");
+        $this->formatted('  about <comment> - Show this screen</>');
+        $this->formatted('  init <comment> - Create a project in the current directory</>');
+        $this->formatted('  new <name> <comment> - Create a new project in the specified directory</>');
+    };
+}
+
+class Installer {
+    public static ?string $baseDir = null;
+    public static ?string $mainName = null;
+}
+
+function InitCommand(): Closure {
+    return function (): int {
+        $baseDir = Installer::$baseDir ?? getcwd();
+        if (file_exists("$baseDir/minima.php")) {
+            $this->error('File minima.php already exists in this directory!');
+            return 409;    
+        }
+
+        if (Installer::$mainName) {
+            $mainName = Installer::$mainName;
+        } else {
+            if ($this->hasOption('name')) {
+                $mainName = $this->getOption('name');
+            } else {
+                $mainName = basename($baseDir);
+            }
+        }
+
+        while (file_exists("$baseDir/$mainName.php")) {
+            $this->error("File $mainName.php already exists in this directory! Please pick a new one.");
+            $mainName = $this->ask('Enter a new name');
+        }
+
+        $sourcePath = __DIR__ .'/minima.php';
+        if (! file_exists($sourcePath)) {
+            $this->error('Could not find a copy of the Minima source code.');
+            $prompt = $this->ask('Would you like to download the latest version? (Y/n)', 'y');
+            if (str_starts_with($prompt, 'y')) {
+                $this->write('Downloading! This may take a second... ');
+                downloadSourceTo($sourcePath);
+                $this->line('Download complete!');
+            } else {
+                $this->warning('Aborting.');
+                return 130; 
+            }
+        }
+
+        copy($sourcePath, "$baseDir/minima.php");
+        $this->line('Created minima.php');
+
+        file_put_contents("$baseDir/$mainName.php", <<<'PHP'
+<?php
+
+require_once __DIR__.'/minima.php';
+
+Command::main(function (): void {
+    $this->info('Welcome to MinimaPHP!');
+});
+
+PHP);
+
+        $this->line("Created $mainName.php");
+
+        $this->info("All done! You can now define your logic in the '$mainName.php' file, then run it using `php $mainName.php`");
+
+        return 0;
+    };
+}
+
+function NewCommand(): Closure {
+    return function (): int {
+        $baseDir = getcwd();
+    
+        if ($this->getArgument(1)) {
+            $dirName = $this->getArgument(1);
+        } else {
+            while (empty($dirName)) {
+                $dirName = $this->ask('Enter the project name');
+            }
+        }
+
+        while (file_exists("$baseDir/$dirName")) {
+            $this->error("A file or directory named $dirName already exists in this directory! Please pick a new name.");
+            $dirName = $this->ask('Enter a new name');
+        }
+
+        mkdir("$baseDir/$dirName");
+        Installer::$baseDir = "$baseDir/$dirName";
+        Installer::$baseDir = $dirName;
+        return Command::main(InitCommand());
+    };
+}
+
+function downloadSourceTo(string $path) {
+    file_put_contents($path, file_get_contents('https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/minima.php'));
+}
+
+$function = CommandRouter::handle();
+
+$exitCode = Command::main($function);
+
+exit($exitCode);
