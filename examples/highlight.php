@@ -7,7 +7,7 @@ Command::main(function (): void {
 });
 
 class Dumper {
-    public static function Highlight(mixed $data): string {
+    public static function highlight(mixed $data): string {
         return //
     }
 }
