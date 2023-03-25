@@ -129,6 +129,8 @@ function NewCommand(): Closure {
             $this->error("A file or directory named $dirName already exists in this directory! Please pick a new name.");
             $dirName = $this->ask('Enter a new name');
         }
+
+        mkdir("$baseDir/$dirName");
     };
 }
 
