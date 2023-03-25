@@ -76,6 +76,8 @@ function InitCommand(): Closure {
             $this->error("File $mainName.php already exists in this directory! Please pick a new one.");
             $mainName = $this->ask('Enter a new name');
         }
+
+        return 0;
     };
 }
 
