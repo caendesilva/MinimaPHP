@@ -2,7 +2,7 @@
 
 ## About
 
-Minimal PHP micro-framework for creating general purpose command-line scripts
+MinimalPHP is a PHP console micro-framework for quickly creating fast general purpose command-line scripts, usually to automate boring tasks, using the PHP tools you're already familiar with. Minima provides easy helpers to interact with the CLI I/O, making it a breeze to build powerful and dynamic scripts.
 
 ### Benefits
 
