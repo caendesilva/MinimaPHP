@@ -43,6 +43,11 @@ Command::main(function (): void {
 });
 ```
 
+If you prefer functional code, we've got it covered. Here's a simple one-line procedural script to get the current time: 
+```php
+exit(main(fn () => $this->info('The time is: ' . date('c'))));
+```
+
 ### Exit codes
 
 If your closure function returns an exit code, the `main` method/function will return that as well. You can then use this to set the exit code for your script:
