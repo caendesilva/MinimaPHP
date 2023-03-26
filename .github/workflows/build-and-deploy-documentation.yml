@@ -23,6 +23,6 @@ jobs:
           mkdir _pages
           cp ../readme-backup _pages/index.md
 
-      - uses: hydephp/action@0.7
+      - uses: hydephp/action@0.7.1
         with:
           deploy-to: "pages"
