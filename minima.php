@@ -369,5 +369,8 @@ if (! function_exists('task')) {
         } else {
             Output::write(ANSI::YELLOW."Skipped.\n".ANSI::RESET);
         }
+        if (! empty($buffer)) {
+            Output::write($buffer);
+        }
     }
 }
