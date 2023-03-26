@@ -61,7 +61,7 @@ trait WritesToOutput {
         $this->line(XML_ANSI::ERROR . $message . ANSI::RESET);
     }
 
-    protected function formatted(string $message): void {
+    protected function formatted(string $message, bool $newLine = true): void {
         $startTags = [
             '<info>' => XML_ANSI::INFO,
             '<warning>' => XML_ANSI::WARNING,
@@ -82,7 +82,11 @@ trait WritesToOutput {
         $formatted = str_replace(array_keys($startTags), array_values($startTags), $message);
         $formatted = str_replace(array_keys($endTags), array_values($endTags), $formatted);
 
-        $this->line($formatted);
+        if ($newLine) {
+            $this->line($formatted);
+        } else {
+            $this->write($formatted);
+        }
     }
 
     /** @example $this->line('Hello ' . $this->ask('Name')); */
