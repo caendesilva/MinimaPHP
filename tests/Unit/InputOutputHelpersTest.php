@@ -9,6 +9,12 @@ test('Output class writes the string to the output', function () {
     expect($output)->toBe('Hello, world!');
 });
 
+test('WritesToOutput::write method writes string to output', function () {
+    ob_start();
+    WritesToOutputClass::call('write', ['Hello, world!']);
+    expect(ob_get_clean())->toBe('Hello, world!');
+});
+
 class WritesToOutputClass {
     use WritesToOutput;
 
