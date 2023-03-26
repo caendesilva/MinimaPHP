@@ -2,6 +2,7 @@
 
 ![License MIT](https://img.shields.io/github/license/caendesilva/MinimaPHP)
 [![Unit Tests](https://github.com/caendesilva/MinimaPHP/actions/workflows/run-unit-tests.yml/badge.svg)](https://github.com/caendesilva/MinimaPHP/actions/workflows/run-unit-tests.yml)
+![Test Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/tests/coverage.json)
 
 ## About
 
