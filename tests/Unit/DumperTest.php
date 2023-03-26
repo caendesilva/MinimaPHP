@@ -33,3 +33,21 @@ test('The highlighter highlights dumped array', function () {
   [34m\'[32mnull[34m\'[0m => [31mnull[0m
 [37m][0m');
 });
+
+test('Dump function dumps using var_dump', function () {
+    ob_start();
+    $array = ['foo' => 'bar'];
+    dump($array);
+    expect(ob_get_clean())->toBe('array(1) {
+  ["foo"]=>
+  string(3) "bar"
+}
+');
+});
+
+test('Dump function dumps using formatter when option is set', function () {
+    ob_start();
+    $array = ['foo' => 'bar'];
+    dump($array, true);
+    expect(ob_get_clean())->toBe(Dumper::highlight($array)."\n");
+});
