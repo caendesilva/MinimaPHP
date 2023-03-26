@@ -58,7 +58,7 @@ final class PicoUnit
     }
 }
 
-function test(bool|Closure $result): void
+function pico_test(bool|Closure $result): void
 {
     PicoUnit::test($result);
 }
@@ -112,26 +112,26 @@ Command::main(function () {
 Command::main(function () {
     $this->formatted("\n<warning>Testing: ANSI Interface</warning>");
 
-    test(ANSI::BLACK === "\033[30m");
-    test(ANSI::RED === "\033[31m");
-    test(ANSI::GREEN === "\033[32m");
-    test(ANSI::YELLOW === "\033[33m");
-    test(ANSI::BLUE === "\033[34m");
-    test(ANSI::MAGENTA === "\033[35m");
-    test(ANSI::CYAN === "\033[36m");
-    test(ANSI::WHITE === "\033[37m");
-    test(ANSI::GRAY === "\033[90m");
-    test(ANSI::RESET === "\033[0m");
+    pico_test(ANSI::BLACK === "\033[30m");
+    pico_test(ANSI::RED === "\033[31m");
+    pico_test(ANSI::GREEN === "\033[32m");
+    pico_test(ANSI::YELLOW === "\033[33m");
+    pico_test(ANSI::BLUE === "\033[34m");
+    pico_test(ANSI::MAGENTA === "\033[35m");
+    pico_test(ANSI::CYAN === "\033[36m");
+    pico_test(ANSI::WHITE === "\033[37m");
+    pico_test(ANSI::GRAY === "\033[90m");
+    pico_test(ANSI::RESET === "\033[0m");
 });
 
 Command::main(function () {
     $this->formatted("\n<warning>Testing: XML_ANSI Interface</warning>");
 
-    test(XML_ANSI::INFO === ANSI::GREEN);
-    test(XML_ANSI::WARNING === ANSI::YELLOW);
-    test(XML_ANSI::ERROR === ANSI::RED);
-    test(XML_ANSI::COMMENT === ANSI::GRAY);
-    test(XML_ANSI::RESET === ANSI::RESET);
+    pico_test(XML_ANSI::INFO === ANSI::GREEN);
+    pico_test(XML_ANSI::WARNING === ANSI::YELLOW);
+    pico_test(XML_ANSI::ERROR === ANSI::RED);
+    pico_test(XML_ANSI::COMMENT === ANSI::GRAY);
+    pico_test(XML_ANSI::RESET === ANSI::RESET);
 });
 
 Command::main(function () {
