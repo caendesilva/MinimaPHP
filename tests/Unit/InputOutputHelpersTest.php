@@ -9,7 +9,7 @@ test('Output class writes the string to the output', function () {
     expect($output)->toBe('Hello, world!');
 });
 
-test('WritesToOutput::write method writes string to output', function () {
+test('WritesToOutput helper methods', function () {
     ob_start();
     (new InteractsWithIOClass)->write('foo');
     expect(ob_get_clean())->toBe('foo');
