@@ -246,3 +246,8 @@ putenv('SKIP_TASKS=true');
 ```
 
 You can also pass `--skip-tasks` to the called command to automatically set the environment variable.
+
+```bash
+php my-script --skip-tasks
+```
+
