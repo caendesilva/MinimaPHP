@@ -3,12 +3,17 @@
 
 require_once __DIR__.'/../minima.php';
 
+interface Build {
+    const REVISION = 'dev';
+}
+
 interface ARGS {
     public const COMMANDS = [
         null => 'WelcomeCommand',
         'about' => 'WelcomeCommand',
         'init' => 'InitCommand',
         'new' => 'NewCommand',
+        'self-update' => 'SelfUpdateCommand',
     ];
 
     public const OPTS = [
@@ -51,7 +56,7 @@ class CommandRouter {
 function WelcomeCommand(): Closure {
     return function (): void {
         if ($this->hasOption('version') | $this->hasOption('v')) {
-            $this->line('MinimaPHP - '.Minima::VERSION);
+            $this->line('MinimaPHP - '.Minima::VERSION . ' (#' .Build::REVISION .')');
             return;
         }
 
@@ -61,6 +66,7 @@ function WelcomeCommand(): Closure {
         $this->formatted('  about <comment> - Show this screen</>');
         $this->formatted('  init <comment> - Create a project in the current directory</>');
         $this->formatted('  new <name> <comment> - Create a new project in the specified directory</>');
+        $this->formatted('  self-update <comment> - Update the global installer executable</>');
     };
 }
 
@@ -154,6 +160,26 @@ function NewCommand(): Closure {
 
 function downloadSourceTo(string $path) {
     file_put_contents($path, file_get_contents('https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/minima.php'));
+}
+
+function SelfUpdateCommand(): Closure {
+    return function (): int {
+        $this->info('Updating Minima!');
+        $binFile = __FILE__;
+        $url = 'https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/bin/minima';
+        $downloadDestination = tempnam(sys_get_temp_dir(), 'minima-bin-download');
+        $this->write(' > Downloading latest build... ');
+        file_put_contents($downloadDestination, file_get_contents($url));
+        $this->line('Done.');
+        chmod($downloadDestination, 0755);
+        $this->write(' > Moving file to the correct location... ');
+        copy($downloadDestination, $binFile);
+        unlink($downloadDestination);
+        $this->line('Done.');
+        $this->formatted('<info>Update complete!</> <warning>Please run `minima --version` to verify.</warning>');
+
+        return 0;
+    };
 }
 
 $function = CommandRouter::handle();
