@@ -17,9 +17,9 @@ jobs:
     - name: Run unit tests
       run: php tests/Unit.php
 
-pest-tests:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Run Pest tests
-      run: cd tests && vendor/bin/pest
+  pest-tests:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+      - name: Run Pest tests
+        run: cd tests && vendor/bin/pest
