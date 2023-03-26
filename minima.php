@@ -364,10 +364,9 @@ if (! function_exists('task')) {
     function task(string $name, callable $task): void {
         $timeStart = microtime(true);
 
-        if (isset($this) && $this instanceof Command) {
-            if ($this->hasOption('skip-tasks')) {
-                putenv('SKIP_TASKS=true');
-            }
+        global $argv;
+        if (in_array('--skip-tasks', $argv)) {
+            putenv('SKIP_TASKS=true');
         }
 
         Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name".ANSI::GREEN."...".ANSI::RESET." ");
