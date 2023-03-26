@@ -10,6 +10,46 @@ TestCase::$startMessage = "Running unit tests!\n";
 TestCase::boot(__FILE__);
 
 Command::main(function () {
+    $this->formatted("\n<warning>ANSI Colours:</warning>");
+
+    $this->line('---------');
+    // $this->line('Base ANSI');
+    $this->line(ANSI::BLACK.'BLACK'. ANSI::RESET);
+    $this->line(ANSI::RED.'RED'. ANSI::RESET);
+    $this->line(ANSI::GREEN.'GREEN'. ANSI::RESET);
+    $this->line(ANSI::YELLOW.'YELLOW'. ANSI::RESET);
+    $this->line(ANSI::BLUE.'BLUE'. ANSI::RESET);
+    $this->line(ANSI::MAGENTA.'MAGENTA'. ANSI::RESET);
+    $this->line(ANSI::CYAN.'CYAN'. ANSI::RESET);
+    $this->line(ANSI::WHITE.'WHITE'. ANSI::RESET);
+    $this->line(ANSI::GRAY.'GRAY'. ANSI::RESET);
+    $this->line(ANSI::RESET.'RESET'. ANSI::RESET);
+
+    // $this->line('Extended ANSI');
+    $this->line(ANSI_EXT::BRIGHT_RED.'BRIGHT_RED'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_GREEN.'BRIGHT_GREEN'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_YELLOW.'BRIGHT_YELLOW'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_BLUE.'BRIGHT_BLUE'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_MAGENTA.'BRIGHT_MAGENTA'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_CYAN.'BRIGHT_CYAN'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_WHITE.'BRIGHT_WHITE'. ANSI::RESET);
+
+    // $this->line('XML ANSI');
+    $this->line(XML_ANSI::INFO .'INFO'.ANSI::RESET);
+    $this->line(XML_ANSI::WARNING .'WARNING'.ANSI::RESET);
+    $this->line(XML_ANSI::ERROR .'ERROR'.ANSI::RESET);
+    $this->line(XML_ANSI::COMMENT .'COMMENT'.ANSI::RESET);
+    $this->line(XML_ANSI::RESET .'RESET'.ANSI::RESET);
+
+    // $this->line('Fluent methods');
+    $this->line('line');
+    $this->info('info');
+    $this->warning('warning');
+    $this->error('error');
+    $this->line('---------');
+});
+
+Command::main(function () {
     $this->formatted("\n<warning>Testing: ANSI Interface</warning>");
 
     test(ANSI::BLACK === "\033[30m");
@@ -43,7 +83,9 @@ Command::main(function () {
     $this->info('info');
     $this->warning('warning');
     $this->error('error');
-    $this->formatted('formatted');
+    $this->formatted('formatted:
+  <info>info</info>, <warning>warning</warning>, <error>error</error>, <comment>comment</comment>, <reset>reset</reset>, 
+  <red>red</red>, <green>green</green>, <blue>blue</blue>, <yellow>yellow</yellow>, <magenta>magenta</magenta>, <cyan>cyan</cyan>');
     $this->line('---------');
 });
 

@@ -19,7 +19,7 @@ interface Console {
     const OUTPUT = STDOUT;
 }
 
-interface ANSI {
+interface ANSI extends ANSI_EXT, XML_ANSI {
     const BLACK   = "\033[30m";
     const RED     = "\033[31m";
     const GREEN   = "\033[32m";
@@ -28,8 +28,18 @@ interface ANSI {
     const MAGENTA = "\033[35m";
     const CYAN    = "\033[36m";
     const WHITE   = "\033[37m";
-    const GRAY    = "\033[90m";
+    const GRAY    = "\033[90m"; // (Bright Black)
     const RESET   = "\033[0m";
+}
+
+interface ANSI_EXT {
+    const BRIGHT_RED     = "\033[91m";
+    const BRIGHT_GREEN   = "\033[92m";
+    const BRIGHT_YELLOW  = "\033[93m";
+    const BRIGHT_BLUE    = "\033[94m";
+    const BRIGHT_MAGENTA = "\033[95m";
+    const BRIGHT_CYAN    = "\033[96m";
+    const BRIGHT_WHITE   = "\033[97m";
 }
 
 interface XML_ANSI {
@@ -61,13 +71,20 @@ trait WritesToOutput {
         $this->line(XML_ANSI::ERROR . $message . ANSI::RESET);
     }
 
-    protected function formatted(string $message): void {
+    protected function formatted(string $message, bool $newLine = true): void {
         $startTags = [
             '<info>' => XML_ANSI::INFO,
             '<warning>' => XML_ANSI::WARNING,
             '<error>' => XML_ANSI::ERROR,
             '<comment>' => XML_ANSI::COMMENT,
             '<reset>' => XML_ANSI::RESET,
+
+            '<red>' => ANSI::RED,
+            '<green>' => ANSI::GREEN,
+            '<blue>' => ANSI::BLUE,
+            '<yellow>' => ANSI::YELLOW,
+            '<magenta>' => ANSI::MAGENTA,
+            '<cyan>' => ANSI::CYAN,
         ];
 
         $endTags = [
@@ -77,12 +94,23 @@ trait WritesToOutput {
             '</comment>' => XML_ANSI::COMMENT,
             '</reset>' => XML_ANSI::RESET,
             '</>' => XML_ANSI::RESET,
+
+            '</red>' => ANSI::RESET,
+            '</green>' => ANSI::RESET,
+            '</blue>' => ANSI::RESET,
+            '</yellow>' => ANSI::RESET,
+            '</magenta>' => ANSI::RESET,
+            '</cyan>' => ANSI::RESET,
         ];
 
         $formatted = str_replace(array_keys($startTags), array_values($startTags), $message);
         $formatted = str_replace(array_keys($endTags), array_values($endTags), $formatted);
 
-        $this->line($formatted);
+        if ($newLine) {
+            $this->line($formatted);
+        } else {
+            $this->write($formatted);
+        }
     }
 
     /** @example $this->line('Hello ' . $this->ask('Name')); */
