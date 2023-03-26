@@ -11,7 +11,8 @@ test('Output class writes the string to the output', function () {
 
 test('WritesToOutput helper methods', function () {
     ob_start();
-    (new InteractsWithIOClass)->write('foo');
+    $output = new InteractsWithIOClass;
+    $output->write('foo');
     expect(ob_get_clean())->toBe('foo');
 });
 
