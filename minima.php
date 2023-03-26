@@ -362,7 +362,9 @@ if (! function_exists('task')) {
     function task(string $name, callable $task): void {
         Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name".ANSI::GREEN."...".ANSI::RESET."\n");
         if (! getenv('SKIP_TASKS')) {
+            ob_start();
             $task();
+            $buffer = ob_get_clean();
             Output::write(ANSI::GREEN."Done!\n".ANSI::RESET);
         } else {
             Output::write(ANSI::YELLOW."Skipped.\n".ANSI::RESET);
