@@ -323,7 +323,7 @@ if (! function_exists('dd')) {
 // end minima.php
 
 interface Build {
-    const REVISION = 'acc8540';
+    const REVISION = '48d23b0';
 }
 
 interface ARGS {
