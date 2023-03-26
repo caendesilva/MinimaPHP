@@ -176,7 +176,7 @@ function SelfUpdateCommand(): Closure {
         copy($downloadDestination, $binFile);
         unlink($downloadDestination);
         $this->line('Done.');
-        $this->info('Update complete! Please run `minima --version` to verify.');
+        $this->formatted('<info>Update complete!</> <warning>Please run `minima --version` to verify.</warning>');
 
         return 0;
     };
