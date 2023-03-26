@@ -25,7 +25,7 @@ jobs:
 
       - name: Setup Hyde.yml
         run: |
-         
+          echo 'load_app_styles_from_cdn: true' >> hyde.ml
 
       - uses: hydephp/action@v0.7.1
         with:
