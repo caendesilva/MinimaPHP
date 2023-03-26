@@ -1,6 +1,7 @@
 {
     "require-dev": {
-        "pestphp/pest": "^2.2"
+        "pestphp/pest": "^2.2",
+        "mockery/mockery": "^1.5"
     },
     "autoload" : {
         "files": [
