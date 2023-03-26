@@ -21,6 +21,10 @@ $exitCode = Command::main(function (): void {
 
     file_put_contents(__DIR__.'/../bin/minima', $bin);
 
+    if ($this->hasOption('git')) {
+        $this->info('Making Git commit');
+    }
+
     $this->info('All done!');
 });
 
