@@ -363,7 +363,9 @@ if (! function_exists('task')) {
         Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name".ANSI::GREEN."...".ANSI::RESET."\n");
         if (! getenv('SKIP_TASKS')) {
             $task();
+            Output::write(ANSI::GREEN."Done!\n".ANSI::RESET);
+        } else {
+            Output::write(ANSI::YELLOW."Skipped.\n".ANSI::RESET);
         }
-        Output::write(ANSI::GREEN."Done!\n".ANSI::RESET);
     }
 }
