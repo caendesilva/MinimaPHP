@@ -215,8 +215,6 @@ class Command {
     }
 }
 
-
-
 class Dumper {
     public static int $arrayBreakLevel = 2;
 
@@ -333,7 +331,7 @@ if (! function_exists('dd')) {
 // end minima.php
 
 interface Build {
-    const REVISION = '61bff1f';
+    const REVISION = '5dc4961';
 }
 
 interface ARGS {
