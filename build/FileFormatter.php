@@ -19,7 +19,7 @@ Command::main(function () {
             $this->line("Formatting ".basename($file));
             formatFile($file);
         }
-    });
+    }, false);
 });
 
 function formatFile(string $file): void {
