@@ -204,3 +204,35 @@ You can also specify a default value by setting the second parameter:
 ```php
 $this->line('Your name is ' . $this->getArgument('name', 'Guest'));
 ```
+
+## Included code APIs
+
+To make your life easier, Minima comes with a few code APIs you can use to write scripts faster than ever!
+
+### Task Function
+
+The `task` function creates a self-contained task that does something and reports the execution time.
+The benefit of using a task like this is that if you set the environment variable SKIP_TASKS to true, the command will bypass all tasks. This is useful for skipping long-running tasks when testing your script during coding.
+
+#### Function Parameters
+This function takes two parameters:
+
+- `$name` (string) - A string that represents the name of the task.
+- `$task` (callable) - A callable function that represents the task to be executed.
+
+#### Example
+
+```php
+Command::main(function () {
+    task('Example Task', function () {
+        $this->line('Hello world!');
+    });
+});
+```
+
+This will print the following: (any output will be buffered and printed indented when the command is done)
+
+```
+Running task Example Task... Done! (took 0.01ms) 
+  Hello world!
+```
