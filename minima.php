@@ -52,27 +52,27 @@ interface XML_ANSI {
 }
 
 trait WritesToOutput {
-    protected function write(string $string): void {
+    public function write(string $string): void {
         Output::write($string);
     }
 
-    protected function line(string $message = ''): void {
+    public function line(string $message = ''): void {
         Output::write($message.PHP_EOL);
     }
 
-    protected function info(string $message): void {
+    public function info(string $message): void {
         $this->line(XML_ANSI::INFO.$message.ANSI::RESET);
     }
 
-    protected function warning(string $message): void {
+    public function warning(string $message): void {
         $this->line(XML_ANSI::WARNING.$message.ANSI::RESET);
     }
 
-    protected function error(string $message): void {
+    public function error(string $message): void {
         $this->line(XML_ANSI::ERROR.$message.ANSI::RESET);
     }
 
-    protected function formatted(string $message, bool $newLine = true): void {
+    public function formatted(string $message, bool $newLine = true): void {
         $startTags = [
             '<info>'    => XML_ANSI::INFO,
             '<warning>' => XML_ANSI::WARNING,
@@ -115,7 +115,7 @@ trait WritesToOutput {
     }
 
     /** @example $this->line('Hello ' . $this->ask('Name')); */
-    protected function ask(string $question, string $default = ''): string {
+    public function ask(string $question, string $default = ''): string {
         return Input::readline(ANSI::YELLOW."$question: ".ANSI::RESET) ?: $default;
     }
 }
