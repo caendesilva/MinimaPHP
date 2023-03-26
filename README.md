@@ -233,7 +233,7 @@ Command::main(function () {
 This will print the following: (any output will be buffered and printed indented when the command is done)
 
 ```
-Running task Example Task... Done! (took 0.01ms) 
+Running task Example Task... Done! (took 0.01ms)
   Hello world!
 ```
 

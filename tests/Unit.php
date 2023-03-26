@@ -84,7 +84,7 @@ Command::main(function () {
     $this->warning('warning');
     $this->error('error');
     $this->formatted('formatted:
-  <info>info</info>, <warning>warning</warning>, <error>error</error>, <comment>comment</comment>, <reset>reset</reset>, 
+  <info>info</info>, <warning>warning</warning>, <error>error</error>, <comment>comment</comment>, <reset>reset</reset>,
   <red>red</red>, <green>green</green>, <blue>blue</blue>, <yellow>yellow</yellow>, <magenta>magenta</magenta>, <cyan>cyan</cyan>');
     $this->line('---------');
 });

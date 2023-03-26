@@ -13,7 +13,7 @@ Command::main(function (): void {
     $this->formatted("<info>Tasks example</info> - <yellow>$taskMessage</yellow>");
 
     task('myTask', function () {
-        $this->line('Called from the task!');        
-        $this->line('Multiple lines are indented.');        
+        $this->line('Called from the task!');
+        $this->line('Multiple lines are indented.');
     });
 });
