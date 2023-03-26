@@ -8,5 +8,7 @@ Command::main(function (): void {
     $taskMessage = $runTasks ? "remove `--skip-tasks` to run the tasks" : "pass `--skip-tasks` to skip the tasks";
     $this->formatted("<info>Tasks example</info> - <yellow>$taskMessage</yellow>");
 
-    //
+    task('myTask', function () {
+        $this->line('Called from the task!');        
+    });
 });
