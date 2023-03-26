@@ -32,6 +32,13 @@ Command::main(function () {
     test(XML_ANSI::ERROR === ANSI::RED);
     test(XML_ANSI::COMMENT === ANSI::GRAY);
     test(XML_ANSI::RESET === ANSI::RESET);
+    $this->line('---------');
+    $this->line(XML_ANSI::INFO .'INFO'.ANSI::RESET);
+    $this->line(XML_ANSI::WARNING .'WARNING'.ANSI::RESET);
+    $this->line(XML_ANSI::ERROR .'ERROR'.ANSI::RESET);
+    $this->line(XML_ANSI::COMMENT .'COMMENT'.ANSI::RESET);
+    $this->line(XML_ANSI::RESET .'RESET'.ANSI::RESET);
+    $this->line('---------');
 });
 
 Command::main(function () {
