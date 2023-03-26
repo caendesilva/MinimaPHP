@@ -11,15 +11,10 @@ test('Output class writes the string to the output', function () {
 
 test('WritesToOutput::write method writes string to output', function () {
     ob_start();
-    InteractsWithIOClass::call('write', ['Hello, world!']);
-    expect(ob_get_clean())->toBe('Hello, world!');
+    (new InteractsWithIOClass)->write('foo');
+    expect(ob_get_clean())->toBe('foo');
 });
 
 class InteractsWithIOClass {
     use InteractsWithIO;
-
-    public static function call(string $name, array $arguments)
-    {
-        return (new static)->$name(...$arguments);
-    }
 }
