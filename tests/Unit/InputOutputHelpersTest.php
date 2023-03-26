@@ -8,3 +8,12 @@ test('Output class writes the string to the output', function () {
     $output = ob_get_clean();
     expect($output)->toBe('Hello, world!');
 });
+
+class WritesToOutputClass {
+    use WritesToOutput;
+
+    public static function call(string $name, array $arguments)
+    {
+        return (new static)->$name(...$arguments);
+    }
+}
