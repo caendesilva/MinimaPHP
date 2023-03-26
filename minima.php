@@ -197,7 +197,7 @@ trait AccessesArguments {
 
 class Output {
     public static function write(string $string): void {
-        file_put_contents('php://stdout', $string);
+        file_put_contents('php://output', $string);
     }
 
     /** @deprecated */
