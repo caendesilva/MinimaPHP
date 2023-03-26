@@ -367,6 +367,7 @@ if (! function_exists('task')) {
         global $argv;
         if (in_array('--skip-tasks', $argv)) {
             putenv('SKIP_TASKS=true');
+            $setLocation = 'option';
         }
 
         Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name".ANSI::GREEN."...".ANSI::RESET." ");
@@ -377,7 +378,8 @@ if (! function_exists('task')) {
             $time = round((microtime(true) - $timeStart) * 1000, 2);
             Output::write(ANSI::GREEN."Done! ".ANSI::GRAY."(took {$time}ms)"." \n".ANSI::RESET);
         } else {
-            Output::write(ANSI::YELLOW."Skipped ".ANSI::GRAY."(as set in environment variable)\n".ANSI::RESET);
+            $setLocation = $setLocation ?? 'environment variable';
+            Output::write(ANSI::YELLOW."Skipped ".ANSI::GRAY."(as set in $setLocation)\n".ANSI::RESET);
         }
         if (! empty($buffer)) {
             foreach (explode("\n", trim($buffer)) as $line) {
