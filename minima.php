@@ -212,8 +212,6 @@ class Command {
     }
 }
 
-
-
 class Dumper {
     public static int $arrayBreakLevel = 2;
 
