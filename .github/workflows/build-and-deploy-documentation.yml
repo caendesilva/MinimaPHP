@@ -27,7 +27,7 @@ jobs:
         run: |
           echo 'name: MinimaPHP' >> hyde.yml
           echo 'load_app_styles_from_cdn: true' >> hyde.yml
-          echo 'footer: <p>Site proudly built with <a href="https://github.com/hydephp/hyde">HydePHP</a> 🎩</p><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/dark.min.css"> <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script> <script>hljs.highlightAll();</script> <style>.prose :where(pre):not(:where([class~=not-prose] *)) { background-color: #303030 } </style> <style>pre code.hljs { padding: 0; }</style>' >> hyde.yml
+          echo 'footer: <p>Site proudly built with <a href="https://github.com/hydephp/hyde">HydePHP</a> 🎩</p><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/dark.min.css"> <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script> <script>hljs.highlightAll();</script> <style>.prose :where(pre) { background-color: #303030; } </style> <style>pre code.hljs { padding: 0; }</style>' >> hyde.yml
 
       - uses: hydephp/action@v0.7.1
         with:
