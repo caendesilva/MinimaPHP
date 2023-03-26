@@ -36,7 +36,7 @@ function isFileChanged(string $new, string $old): bool {
         return implode("\n", $lines);
     };
 
-    return $unsetRevisionLines($new) === $unsetRevisionLines($new);
+    return $unsetRevisionLines($new) === $unsetRevisionLines($old);
 }
 
 exit($exitCode);
