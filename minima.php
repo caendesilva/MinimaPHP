@@ -91,7 +91,7 @@ trait WritesToOutput {
             '</info>' => XML_ANSI::RESET,
             '</warning>' => XML_ANSI::RESET,
             '</error>' => XML_ANSI::RESET,
-            '</comment>' => XML_ANSI::COMMENT,
+            '</comment>' => XML_ANSI::RESET,
             '</reset>' => XML_ANSI::RESET,
             '</>' => XML_ANSI::RESET,
 
