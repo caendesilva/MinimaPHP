@@ -21,6 +21,14 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v3
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: tests/vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/tests/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
       - name: Install dependencies
         run: cd tests && composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Run Pest tests
