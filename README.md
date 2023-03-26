@@ -8,6 +8,10 @@ MinimaPHP is a PHP console micro-framework for quickly creating fast general pur
 
 The main benefit of using MinimaPHP is that it has **zero dependencies**. You thus don't need to bother with Composer or autoloading. Just include the single compact `minima.php` file and you're ready to go. That's right, you don't even need a Phar, because Minima is tiny (< 10Kb).
 
+### The Philosophy
+
+Since Minima is designed for scripting, the philosophy is that your Minima projects don't need to be pretty, they just need to do the thing you want them to do. If all you're doing is [formatting some files](https://github.com/caendesilva/MinimaPHP/blob/main/build/FileFormatter.php), or [compiling a file to a standalone executable](https://github.com/caendesilva/MinimaPHP/blob/main/build/build-bin.php), who cares if the code looks ugly, as long as it works! Just bodge something together, then call it a day. Save your energy writing the beautiful code you usually do for something that's shared with the world, and instead focus on the result, because believe me, it's a nice change of pace for once.
+
 
 ## Installation
 
