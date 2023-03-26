@@ -356,8 +356,8 @@ if (! function_exists('dd')) {
 if (! function_exists('task')) {
     /**
      * Create a self-contained task that does something, then reports the execution time.
-     * You can also bypass the tasks by setting the environment variable SKIP_TASKS to true. This allows
-     * you to skip long-running tasks while you test your script during development.
+     * You can bypass all tasks by setting the environment variable SKIP_TASKS to true.
+     * This is great for skipping long tasks when testing your script during coding.
      */
     function task(string $name, callable $task): void {
         $task();
