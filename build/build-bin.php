@@ -8,11 +8,12 @@ $exitCode = Command::main(function (): void {
     $src = file_get_contents(__DIR__.'/../minima.php');
     $base = file_get_contents(__DIR__.'/dev-bin');
 
-    $src = str_replace("<?php", "// start minima.php", $src);
-    $bin = str_replace("require_once __DIR__.'/../minima.php';", $src . "\n// end minima.php", $base);
+    $src = str_replace('<?php', '// start minima.php', $src);
+    $bin = str_replace("require_once __DIR__.'/../minima.php';", $src."\n// end minima.php", $base);
 
     if (isFileChanged($bin, file_get_contents(__DIR__.'/../bin/minima'))) {
         $this->info('No changes made since last build. Exiting gracefully.');
+
         return;
     }
 
@@ -30,7 +31,7 @@ $exitCode = Command::main(function (): void {
 });
 
 function isFileChanged(string $new, string $old): bool {
-    $unsetRevisionLines = function(string $contents): string {
+    $unsetRevisionLines = function (string $contents): string {
         $lines = explode("\n", $contents);
         foreach ($lines as $index => $line) {
             if (str_contains($line, 'const REVISION = ')) {
@@ -38,6 +39,7 @@ function isFileChanged(string $new, string $old): bool {
                 break;
             }
         }
+
         return implode("\n", $lines);
     };
 

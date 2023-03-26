@@ -6,10 +6,11 @@
  * @license MIT License
  * @author Caen De Silva
  * @copyright Copyright (c) 2023 Caen De Silva
+ *
  * @link https://github.com/caendesilva/MinimaPHP
+ *
  * @version Minima::VERSION
  */
-
 interface Minima {
     const VERSION = 'v0.1.0-dev';
 }
@@ -20,34 +21,34 @@ interface Console {
 }
 
 interface ANSI extends ANSI_EXT, XML_ANSI {
-    const BLACK   = "\033[30m";
-    const RED     = "\033[31m";
-    const GREEN   = "\033[32m";
-    const YELLOW  = "\033[33m";
-    const BLUE    = "\033[34m";
+    const BLACK = "\033[30m";
+    const RED = "\033[31m";
+    const GREEN = "\033[32m";
+    const YELLOW = "\033[33m";
+    const BLUE = "\033[34m";
     const MAGENTA = "\033[35m";
-    const CYAN    = "\033[36m";
-    const WHITE   = "\033[37m";
-    const GRAY    = "\033[90m"; // (Bright Black)
-    const RESET   = "\033[0m";
+    const CYAN = "\033[36m";
+    const WHITE = "\033[37m";
+    const GRAY = "\033[90m"; // (Bright Black)
+    const RESET = "\033[0m";
 }
 
 interface ANSI_EXT {
-    const BRIGHT_RED     = "\033[91m";
-    const BRIGHT_GREEN   = "\033[92m";
-    const BRIGHT_YELLOW  = "\033[93m";
-    const BRIGHT_BLUE    = "\033[94m";
+    const BRIGHT_RED = "\033[91m";
+    const BRIGHT_GREEN = "\033[92m";
+    const BRIGHT_YELLOW = "\033[93m";
+    const BRIGHT_BLUE = "\033[94m";
     const BRIGHT_MAGENTA = "\033[95m";
-    const BRIGHT_CYAN    = "\033[96m";
-    const BRIGHT_WHITE   = "\033[97m";
+    const BRIGHT_CYAN = "\033[96m";
+    const BRIGHT_WHITE = "\033[97m";
 }
 
 interface XML_ANSI {
-    const INFO    = ANSI::GREEN;
+    const INFO = ANSI::GREEN;
     const WARNING = ANSI::YELLOW;
-    const ERROR   = ANSI::RED;
+    const ERROR = ANSI::RED;
     const COMMENT = ANSI::GRAY;
-    const RESET   = ANSI::RESET;
+    const RESET = ANSI::RESET;
 }
 
 trait WritesToOutput {
@@ -56,51 +57,51 @@ trait WritesToOutput {
     }
 
     protected function line(string $message = ''): void {
-        Output::write($message . PHP_EOL);
+        Output::write($message.PHP_EOL);
     }
 
     protected function info(string $message): void {
-        $this->line(XML_ANSI::INFO . $message . ANSI::RESET);
+        $this->line(XML_ANSI::INFO.$message.ANSI::RESET);
     }
 
     protected function warning(string $message): void {
-        $this->line(XML_ANSI::WARNING . $message . ANSI::RESET);
+        $this->line(XML_ANSI::WARNING.$message.ANSI::RESET);
     }
 
     protected function error(string $message): void {
-        $this->line(XML_ANSI::ERROR . $message . ANSI::RESET);
+        $this->line(XML_ANSI::ERROR.$message.ANSI::RESET);
     }
 
     protected function formatted(string $message, bool $newLine = true): void {
         $startTags = [
-            '<info>' => XML_ANSI::INFO,
+            '<info>'    => XML_ANSI::INFO,
             '<warning>' => XML_ANSI::WARNING,
-            '<error>' => XML_ANSI::ERROR,
+            '<error>'   => XML_ANSI::ERROR,
             '<comment>' => XML_ANSI::COMMENT,
-            '<reset>' => XML_ANSI::RESET,
+            '<reset>'   => XML_ANSI::RESET,
 
-            '<red>' => ANSI::RED,
-            '<green>' => ANSI::GREEN,
-            '<blue>' => ANSI::BLUE,
-            '<yellow>' => ANSI::YELLOW,
+            '<red>'     => ANSI::RED,
+            '<green>'   => ANSI::GREEN,
+            '<blue>'    => ANSI::BLUE,
+            '<yellow>'  => ANSI::YELLOW,
             '<magenta>' => ANSI::MAGENTA,
-            '<cyan>' => ANSI::CYAN,
+            '<cyan>'    => ANSI::CYAN,
         ];
 
         $endTags = [
-            '</info>' => XML_ANSI::RESET,
+            '</info>'    => XML_ANSI::RESET,
             '</warning>' => XML_ANSI::RESET,
-            '</error>' => XML_ANSI::RESET,
+            '</error>'   => XML_ANSI::RESET,
             '</comment>' => XML_ANSI::RESET,
-            '</reset>' => XML_ANSI::RESET,
-            '</>' => XML_ANSI::RESET,
+            '</reset>'   => XML_ANSI::RESET,
+            '</>'        => XML_ANSI::RESET,
 
-            '</red>' => ANSI::RESET,
-            '</green>' => ANSI::RESET,
-            '</blue>' => ANSI::RESET,
-            '</yellow>' => ANSI::RESET,
+            '</red>'     => ANSI::RESET,
+            '</green>'   => ANSI::RESET,
+            '</blue>'    => ANSI::RESET,
+            '</yellow>'  => ANSI::RESET,
             '</magenta>' => ANSI::RESET,
-            '</cyan>' => ANSI::RESET,
+            '</cyan>'    => ANSI::RESET,
         ];
 
         $formatted = str_replace(array_keys($startTags), array_values($startTags), $message);
@@ -146,6 +147,7 @@ trait AccessesArguments {
 
     private function getArgumentByValue(string $value): ?string {
         $index = array_flip(array_values($this->arguments))[$value] ?? null;
+
         return $this->arguments[$index] ?? null;
     }
 
@@ -160,6 +162,7 @@ trait AccessesArguments {
                 $formatted[$option] = true;
             }
         }
+
         return $formatted;
     }
 
@@ -173,6 +176,7 @@ trait AccessesArguments {
                 $formatted[$index] = $argument;
             }
         }
+
         return $formatted;
     }
 
@@ -191,7 +195,7 @@ trait AccessesArguments {
             }
         }
 
-        return array(self::parseOptions($options), self::parseArguments($arguments));
+        return [self::parseOptions($options), self::parseArguments($arguments)];
     }
 }
 
@@ -202,7 +206,7 @@ class Output {
 
     /** @deprecated */
     public static function line(string $message = ''): void {
-        static::write($message . PHP_EOL);
+        static::write($message.PHP_EOL);
     }
 }
 
@@ -244,23 +248,23 @@ class Dumper {
     public static int $arrayBreakLevel = 2;
 
     const INDENT = '  ';
-    const ARRAY_OPEN = ANSI::WHITE . '[' . ANSI::RESET;
-    const ARRAY_CLOSE = ANSI::WHITE . ']' . ANSI::RESET;
-    const STRING_OPEN = ANSI::BLUE . "'" . ANSI::GREEN;
-    const STRING_CLOSE = ANSI::BLUE . "'" . ANSI::RESET;
+    const ARRAY_OPEN = ANSI::WHITE.'['.ANSI::RESET;
+    const ARRAY_CLOSE = ANSI::WHITE.']'.ANSI::RESET;
+    const STRING_OPEN = ANSI::BLUE."'".ANSI::GREEN;
+    const STRING_CLOSE = ANSI::BLUE."'".ANSI::RESET;
     const INTEGER_OPEN = ANSI::YELLOW;
     const INTEGER_CLOSE = ANSI::RESET;
     const BOOLEAN_OPEN = ANSI::RED;
     const BOOLEAN_CLOSE = ANSI::RESET;
     const OBJECT_OPEN = ANSI::YELLOW;
     const OBJECT_CLOSE = ANSI::RESET;
-    const NULL = ANSI::RED . 'null' . ANSI::RESET;
+    const NULL = ANSI::RED.'null'.ANSI::RESET;
 
     protected int $indentationLevel = 0;
     protected bool $inOpenArray = false;
 
     public static function highlight(mixed $data): string {
-        return (new static)->runHighlighter($data);
+        return (new static())->runHighlighter($data);
     }
 
     protected function runHighlighter(mixed $data): string {
@@ -280,7 +284,7 @@ class Dumper {
             return $this->array($data);
         }
         if (is_object($data)) {
-            return static::OBJECT_OPEN . $data::class . static::OBJECT_CLOSE;
+            return static::OBJECT_OPEN.$data::class.static::OBJECT_CLOSE;
         }
 
         return (string) $data;
@@ -295,16 +299,16 @@ class Dumper {
     }
 
     protected function int(int $value): string {
-        return static::INTEGER_OPEN .$value.static::INTEGER_CLOSE;
+        return static::INTEGER_OPEN.$value.static::INTEGER_CLOSE;
     }
 
     protected function bool(bool $value): string {
-        return static::BOOLEAN_OPEN .($value ? 'true' : 'false').static::BOOLEAN_CLOSE;
+        return static::BOOLEAN_OPEN.($value ? 'true' : 'false').static::BOOLEAN_CLOSE;
     }
 
     protected function array(array $array): string {
         $this->indentationLevel++;
-        if ($this->indentationLevel >= static::$arrayBreakLevel -1) {
+        if ($this->indentationLevel >= static::$arrayBreakLevel - 1) {
             $this->inOpenArray = true;
         }
         $parts = [];
@@ -315,45 +319,46 @@ class Dumper {
                 $indent = '';
             }
             if (is_int($key)) {
-                $parts[] = $indent . $this->runHighlighter($value);
+                $parts[] = $indent.$this->runHighlighter($value);
             } else {
-                $parts[] = $indent . $this->string($key) . ' => ' . $this->runHighlighter($value);
+                $parts[] = $indent.$this->string($key).' => '.$this->runHighlighter($value);
             }
         }
         if ($this->inOpenArray) {
             $this->indentationLevel--;
             $indent = str_repeat(self::INDENT, $this->indentationLevel);
-            return static::ARRAY_OPEN . "\n" . implode(",\n", $parts) . "\n$indent" . static::ARRAY_CLOSE;
+
+            return static::ARRAY_OPEN."\n".implode(",\n", $parts)."\n$indent".static::ARRAY_CLOSE;
         } else {
-            return static::ARRAY_OPEN . '' . implode(', ', $parts) . '' . static::ARRAY_CLOSE;
+            return static::ARRAY_OPEN.''.implode(', ', $parts).''.static::ARRAY_CLOSE;
         }
     }
 }
 
-if (! function_exists('main')) {
+if (!function_exists('main')) {
     function main(Closure $logic): int {
         return Command::main($logic);
     }
 }
 
-if (! function_exists('dump')) {
+if (!function_exists('dump')) {
     function dump(mixed $value, bool $highlight = false): void {
         if ($highlight) {
-            echo Dumper::highlight($value) . "\n";
+            echo Dumper::highlight($value)."\n";
         } else {
             var_dump($value);
         }
     }
 }
 
-if (! function_exists('dd')) {
+if (!function_exists('dd')) {
     function dd(mixed $value, bool $highlight = false): never {
         dump($value, $highlight);
-        die(1);
+        exit(1);
     }
 }
 
-if (! function_exists('task')) {
+if (!function_exists('task')) {
     /**
      * Create a self-contained task that does something, then reports the execution time.
      * You can bypass all tasks by setting the environment variable SKIP_TASKS to true.
@@ -370,18 +375,18 @@ if (! function_exists('task')) {
             $setLocation = 'option';
         }
 
-        Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name".ANSI::GREEN."...".ANSI::RESET." ");
-        if (! getenv('SKIP_TASKS')) {
+        Output::write(ANSI::GREEN.'Running task '.ANSI::YELLOW."$name".ANSI::GREEN.'...'.ANSI::RESET.' ');
+        if (!getenv('SKIP_TASKS')) {
             ob_start();
             $task();
             $buffer = ob_get_clean();
             $time = round((microtime(true) - $timeStart) * 1000, 2);
-            Output::write(ANSI::GREEN."Done! ".ANSI::GRAY."(took {$time}ms)"." \n".ANSI::RESET);
+            Output::write(ANSI::GREEN.'Done! '.ANSI::GRAY."(took {$time}ms)"." \n".ANSI::RESET);
         } else {
             $setLocation = $setLocation ?? 'environment variable';
-            Output::write(ANSI::YELLOW."Skipped ".ANSI::GRAY."(as set in $setLocation)\n".ANSI::RESET);
+            Output::write(ANSI::YELLOW.'Skipped '.ANSI::GRAY."(as set in $setLocation)\n".ANSI::RESET);
         }
-        if (! empty($buffer)) {
+        if (!empty($buffer)) {
             foreach (explode("\n", trim($buffer)) as $line) {
                 Output::write("  $line\n");
             }

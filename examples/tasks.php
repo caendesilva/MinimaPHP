@@ -9,7 +9,7 @@ Command::main(function (): void {
         putenv('SKIP_TASKS=true');
     }
 
-    $taskMessage = $skipTasks ? "remove `--skip-tasks` to run the tasks" : "pass `--skip-tasks` to skip the tasks";
+    $taskMessage = $skipTasks ? 'remove `--skip-tasks` to run the tasks' : 'pass `--skip-tasks` to skip the tasks';
     $this->formatted("<info>Tasks example</info> - <yellow>$taskMessage</yellow>");
 
     task('myTask', function () {

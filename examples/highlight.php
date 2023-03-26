@@ -7,15 +7,15 @@ Command::main(function (): void {
 
     dump([
         'foo',
-        'bar' => 'baz',
+        'bar'   => 'baz',
         'array' => [
             'some',
             'contents',
-            'bool' => true,
+            'bool'    => true,
             'integer' => 10,
-            'deep' => ['array']
+            'deep'    => ['array'],
         ],
         'object' => new Dumper(),
-        'null' => null
+        'null'   => null,
     ], true);
 });
