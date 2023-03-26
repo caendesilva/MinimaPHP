@@ -2,6 +2,11 @@
     "require-dev": {
         "pestphp/pest": "^2.2"
     },
+    "autoload" : {
+        "files": [
+            "../minima.php"
+        ]
+    },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
