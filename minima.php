@@ -362,12 +362,14 @@ if (! function_exists('task')) {
      * // Todo add buffer parameter to disable buffering, in case live output is needed?
      */
     function task(string $name, callable $task): void {
+        $timeStart = microtime(true);
         Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name".ANSI::GREEN."...".ANSI::RESET." ");
         if (! getenv('SKIP_TASKS')) {
             ob_start();
             $task();
             $buffer = ob_get_clean();
-            Output::write(ANSI::GREEN."Done!\n".ANSI::RESET);
+            $time = round((microtime(true) - $timeStart) * 1000, 2);
+            Output::write(ANSI::GREEN."Done! ".ANSI::GRAY."(took {$time}ms)"." \n".ANSI::RESET);
         } else {
             Output::write(ANSI::YELLOW."Skipped.\n".ANSI::RESET);
         }
