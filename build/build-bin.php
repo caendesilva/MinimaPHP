@@ -23,6 +23,7 @@ $exitCode = Command::main(function (): void {
 
     if ($this->hasOption('git')) {
         $this->info('Making Git commit');
+        passthru('git add bin/minima && git commit -m "Build standalone executable"');
     }
 
     $this->info('All done!');
