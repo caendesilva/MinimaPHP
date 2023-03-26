@@ -43,7 +43,7 @@ Command::main(function (): void {
 });
 ```
 
-If you prefer functional code, we've got it covered. Here's a simple one-line procedural script to get the current time: 
+If you prefer functional code, we've got it covered. Here's a simple one-line procedural script to get the current time:
 ```php
 exit(main(fn () => $this->info('The time is: ' . date('c'))));
 ```
