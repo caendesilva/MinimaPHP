@@ -51,7 +51,7 @@ interface XML_ANSI {
     const RESET = ANSI::RESET;
 }
 
-trait WritesToOutput {
+trait InteractsWithIO {
     public function write(string $string): void {
         Output::write($string);
     }
@@ -216,7 +216,7 @@ class Input {
 }
 
 class Command {
-    use WritesToOutput;
+    use InteractsWithIO;
     use AccessesArguments;
 
     protected Output $output;
@@ -227,7 +227,7 @@ class Command {
     protected function __construct() {
         $this->output = new Output();
 
-        list($this->options, $this->arguments) = $this->parseCommandArguments();
+        [$this->options, $this->arguments] = $this->parseCommandArguments();
     }
 
     public static function main(Closure $logic): int {
