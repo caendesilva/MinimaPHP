@@ -66,6 +66,7 @@ function WelcomeCommand(): Closure {
         $this->formatted('  about <comment> - Show this screen</>');
         $this->formatted('  init <comment> - Create a project in the current directory</>');
         $this->formatted('  new <name> <comment> - Create a new project in the specified directory</>');
+        $this->formatted('  self-update <comment> - Update the global installer executable</>');
     };
 }
 
