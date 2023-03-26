@@ -164,7 +164,21 @@ function downloadSourceTo(string $path) {
 
 function SelfUpdateCommand(): Closure {
     return function (): int {
-        //
+        $this->info('Updating Minima!');
+        $binFile = __FILE__;
+        $url = 'https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/bin/minima';
+        $downloadDestination = tempnam(sys_get_temp_dir(), 'minima-bin-download');
+        $this->write(' > Downloading latest build... ');
+        file_put_contents($downloadDestination, file_get_contents($url));
+        $this->line('Done.');
+        chmod($downloadDestination, 0755);
+        $this->write(' > Moving file to the correct location... ');
+        copy($downloadDestination, $binFile);
+        unlink($downloadDestination);
+        $this->line('Done.');
+        $this->info('Update complete! Please run `minima --version` to verify.');
+
+        return 0;
     };
 }
 
