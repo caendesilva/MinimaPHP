@@ -1,5 +1,8 @@
 # MinimaPHP
 
+![License MIT](https://img.shields.io/github/license/caendesilva/MinimaPHP)
+[![Unit Tests](https://github.com/caendesilva/MinimaPHP/actions/workflows/run-unit-tests.yml/badge.svg)](https://github.com/caendesilva/MinimaPHP/actions/workflows/run-unit-tests.yml)
+
 ## About
 
 MinimaPHP is a PHP console micro-framework for quickly creating fast general purpose command-line scripts, usually to automate boring tasks, using the PHP tools you're already familiar with. Minima provides easy helpers to interact with the CLI I/O, making it a breeze to build powerful and dynamic scripts.
