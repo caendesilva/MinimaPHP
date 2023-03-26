@@ -14,14 +14,14 @@ test('WritesToOutput helper methods', function () {
     $output = new InteractsWithIOClass;
     $output->write('foo');
     $output->write(' ');
-    $output->line('foo');
-    $output->info('foo');
-    $output->warning('foo');
-    $output->error('foo');
-    expect(ob_get_clean())->toBe('foo foo
-[32mfoo[0m
-[33mfoo[0m
-[31mfoo[0m
+    $output->line('line');
+    $output->info('info');
+    $output->warning('warning');
+    $output->error('error');
+    expect(ob_get_clean())->toBe('foo line
+[32minfo[0m
+[33mwarning[0m
+[31merror[0m
 ');
 });
 
