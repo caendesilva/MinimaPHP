@@ -1,8 +1,8 @@
 # MinimaPHP
 
-[![License MIT](https://img.shields.io/github/license/caendesilva/MinimaPHP)](https://github.com/caendesilva/MinimaPHP/blob/main/LICENSE.md)
-[![Unit Tests](https://github.com/caendesilva/MinimaPHP/actions/workflows/run-unit-tests.yml/badge.svg)](https://github.com/caendesilva/MinimaPHP/actions/workflows/run-unit-tests.yml)
-[![Test Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/tests/coverage.json)](https://github.com/caendesilva/MinimaPHP/blob/main/tests/coverage.json)
+<a href="https://github.com/caendesilva/MinimaPHP/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/caendesilva/MinimaPHP" alt="License MIT" style="display: inline; margin: 0 2px;"></a>
+<a href="https://github.com/caendesilva/MinimaPHP/actions/workflows/run-unit-tests.yml"><img src="https://github.com/caendesilva/MinimaPHP/actions/workflows/run-unit-tests.yml/badge.svg" alt="Unit Tests" style="display: inline; margin: 0 2px;"></a>
+<a href="https://github.com/caendesilva/MinimaPHP/blob/main/tests/coverage.json"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/tests/coverage.json" alt="Test Coverage" style="display: inline; margin: 0 2px;"></a>
 
 ## About
 
