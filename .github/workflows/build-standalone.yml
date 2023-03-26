@@ -15,4 +15,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build the standalone
-      run: php build/build-bin.php
+      run: php build/build-bin.php --git
+
+    - name: Push commited changes
+      run: git push
