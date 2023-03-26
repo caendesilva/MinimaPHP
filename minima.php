@@ -78,6 +78,13 @@ trait WritesToOutput {
             '<error>' => XML_ANSI::ERROR,
             '<comment>' => XML_ANSI::COMMENT,
             '<reset>' => XML_ANSI::RESET,
+
+            '<red>' => ANSI::RED,
+            '<green>' => ANSI::GREEN,
+            '<blue>' => ANSI::BLUE,
+            '<yellow>' => ANSI::YELLOW,
+            '<magenta>' => ANSI::MAGENTA,
+            '<cyan>' => ANSI::CYAN,
         ];
 
         $endTags = [
@@ -87,6 +94,13 @@ trait WritesToOutput {
             '</comment>' => XML_ANSI::COMMENT,
             '</reset>' => XML_ANSI::RESET,
             '</>' => XML_ANSI::RESET,
+
+            '</red>' => ANSI::RESET,
+            '</green>' => ANSI::RESET,
+            '</blue>' => ANSI::RESET,
+            '</yellow>' => ANSI::RESET,
+            '</magenta>' => ANSI::RESET,
+            '</cyan>' => ANSI::RESET,
         ];
 
         $formatted = str_replace(array_keys($startTags), array_values($startTags), $message);
