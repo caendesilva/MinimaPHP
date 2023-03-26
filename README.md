@@ -6,7 +6,7 @@ Minimal PHP micro-framework for creating general purpose command-line scripts
 
 ### Benefits
 
-The main benefit of using MinimaPHP is that it has **zero dependencies**. You thus don't need to bother with Composer or autoloading. Just include the single compact `minima.php` file and you're ready to go. That's right, you don't even need a Phar, because Minima is tiny (< 10kb).
+The main benefit of using MinimaPHP is that it has **zero dependencies**. You thus don't need to bother with Composer or autoloading. Just include the single compact `minima.php` file and you're ready to go. That's right, you don't even need a Phar, because Minima is tiny (< 10Kb).
 
 
 ## Installation
