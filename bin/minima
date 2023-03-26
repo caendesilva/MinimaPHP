@@ -395,7 +395,7 @@ if (! function_exists('task')) {
 // end minima.php
 
 interface Build {
-    const REVISION = 'a982b6b';
+    const REVISION = '74a3499';
 }
 
 interface ARGS {
@@ -454,9 +454,15 @@ function WelcomeCommand(): Closure {
         $this->formatted('<info>Welcome to MinimaPHP!</info> <comment>You are running version '.Minima::VERSION.'.</comment>');
 
         $this->warning("\nAvailable commands:");
-        $this->formatted('  about <comment> - Show this screen</>');
-        $this->formatted('  init <comment> - Create a project in the current directory</>');
-        $this->formatted('  new <name> <comment> - Create a new project in the specified directory</>');
+        $this->formatted('  about       <comment> - Show this screen</>');
+        $this->formatted('              <comment>     -v, --version: Show the installed version</>');
+        $this->formatted('  init        <comment> - Create a project in the current directory</>');
+        $this->formatted('              <comment>     --name: The name of the main script file to create</>');
+        $this->formatted('              <comment>     --require-global: Require the global minima.php file in created script</>');
+        $this->formatted('  new <name>  <comment> - Create a new project in the specified directory</>');
+        $this->formatted('              <comment>     --name: The name of the directory and main script file to create</>');
+        $this->formatted('              <comment>     --require-global: Require the global minima.php file in created script</>');
+
         $this->formatted('  self-update <comment> - Update the global installer executable</>');
     };
 }
@@ -503,6 +509,10 @@ function InitCommand(): Closure {
             }
         }
 
+        $copyFile = ! $this->hasOption('require-global');
+
+        if ($copyFile) {
+            
         copy($sourcePath, "$baseDir/minima.php");
         $this->line('Created minima.php');
 
@@ -516,6 +526,18 @@ Command::main(function (): void {
 });
 
 PHP);
+        } else {
+        file_put_contents("$baseDir/$mainName.php", <<<PHP
+<?php
+
+require_once '$sourcePath';
+
+Command::main(function (): void {
+    \$this->info('Welcome to MinimaPHP!');
+});
+
+PHP);
+        }
 
         $this->line("Created $mainName.php");
 
