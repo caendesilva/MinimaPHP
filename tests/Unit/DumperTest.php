@@ -34,6 +34,12 @@ test('The highlighter highlights dumped array', function () {
 [37m][0m');
 });
 
+test('Highlighter with unknown type', function () {
+    $highlighted = Dumper::highlight(fopen('php://memory', 'r'));
+
+    expect($highlighted)->toContain('Resource id #');
+});
+
 test('Dump function dumps using var_dump', function () {
     ob_start();
     $array = ['foo' => 'bar'];
