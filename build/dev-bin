@@ -162,6 +162,12 @@ function downloadSourceTo(string $path) {
     file_put_contents($path, file_get_contents('https://raw.githubusercontent.com/caendesilva/MinimaPHP/main/minima.php'));
 }
 
+function SelfUpdateCommand(): Closure {
+    return function (): int {
+        //
+    };
+}
+
 $function = CommandRouter::handle();
 
 $exitCode = Command::main($function);
