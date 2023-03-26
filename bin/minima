@@ -200,7 +200,7 @@ trait AccessesArguments {
 
 class Output {
     public static function write(string $string): void {
-        file_put_contents('php://stdout', $string);
+        file_put_contents('php://output', $string);
     }
 
     /** @deprecated */
@@ -356,10 +356,46 @@ if (! function_exists('dd')) {
     }
 }
 
+if (! function_exists('task')) {
+    /**
+     * Create a self-contained task that does something, then reports the execution time.
+     * You can bypass all tasks by setting the environment variable SKIP_TASKS to true.
+     * This is great for skipping long tasks when testing your script during coding.
+     * 
+     * // Todo add buffer parameter to disable buffering, in case live output is needed?
+     */
+    function task(string $name, callable $task): void {
+        $timeStart = microtime(true);
+
+        global $argv;
+        if (in_array('--skip-tasks', $argv)) {
+            putenv('SKIP_TASKS=true');
+            $setLocation = 'option';
+        }
+
+        Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name".ANSI::GREEN."...".ANSI::RESET." ");
+        if (! getenv('SKIP_TASKS')) {
+            ob_start();
+            $task();
+            $buffer = ob_get_clean();
+            $time = round((microtime(true) - $timeStart) * 1000, 2);
+            Output::write(ANSI::GREEN."Done! ".ANSI::GRAY."(took {$time}ms)"." \n".ANSI::RESET);
+        } else {
+            $setLocation = $setLocation ?? 'environment variable';
+            Output::write(ANSI::YELLOW."Skipped ".ANSI::GRAY."(as set in $setLocation)\n".ANSI::RESET);
+        }
+        if (! empty($buffer)) {
+            foreach (explode("\n", trim($buffer)) as $line) {
+                Output::write("  $line\n");
+            }
+        }
+    }
+}
+
 // end minima.php
 
 interface Build {
-    const REVISION = '12ad93a';
+    const REVISION = 'b0d950d';
 }
 
 interface ARGS {
