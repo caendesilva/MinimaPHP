@@ -203,11 +203,6 @@ class Output {
     public static function write(string $string): void {
         file_put_contents('php://output', $string);
     }
-
-    /** @deprecated */
-    public static function line(string $message = ''): void {
-        static::write($message.PHP_EOL);
-    }
 }
 
 class Input {
