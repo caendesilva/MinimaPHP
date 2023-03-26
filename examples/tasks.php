@@ -14,5 +14,6 @@ Command::main(function (): void {
 
     task('myTask', function () {
         $this->line('Called from the task!');        
+        $this->line('Multiple lines are indented.');        
     });
 });

@@ -370,7 +370,9 @@ if (! function_exists('task')) {
             Output::write(ANSI::YELLOW."Skipped.\n".ANSI::RESET);
         }
         if (! empty($buffer)) {
-            Output::write($buffer);
+            foreach (explode("\n", trim($buffer)) as $line) {
+                Output::write("  $line\n");
+            }
         }
     }
 }
