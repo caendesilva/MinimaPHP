@@ -12,6 +12,20 @@ The main benefit of using MinimaPHP is that it has **zero dependencies**. You th
 
 Since Minima is designed for scripting, the philosophy is that your Minima projects don't need to be pretty, they just need to do the thing you want them to do. If all you're doing is [formatting some files](https://github.com/caendesilva/MinimaPHP/blob/main/build/FileFormatter.php), or [compiling a file to a standalone executable](https://github.com/caendesilva/MinimaPHP/blob/main/build/build-bin.php), who cares if the code looks ugly, as long as it works! Just bodge something together, then call it a day.
 
+### What it looks like
+
+Before jumping into the installation details, let's see a minimal script setup. Forget what I just said above, this is rather beautiful right?
+
+```php
+<?php
+
+require_once 'minima.php';
+
+Command::main(function () {
+    $this->info('Welcome to MinimaPHP!');
+});
+```
+
 
 ## Installation
 
