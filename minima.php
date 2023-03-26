@@ -364,5 +364,6 @@ if (! function_exists('task')) {
         if (! getenv('SKIP_TASKS')) {
             $task();
         }
+        Output::write(ANSI::GREEN."Done!\n".ANSI::RESET);
     }
 }
