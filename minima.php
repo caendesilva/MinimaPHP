@@ -360,6 +360,8 @@ if (! function_exists('task')) {
      * This is great for skipping long tasks when testing your script during coding.
      */
     function task(string $name, callable $task): void {
-        $task();
+        if (! getenv('SKIP_TASKS')) {
+            $task();
+        }
     }
 }
