@@ -32,6 +32,10 @@ interface ANSI extends XML_ANSI {
     const RESET   = "\033[0m";
 }
 
+interface ANSI_EXT {
+    //
+}
+
 interface XML_ANSI {
     const INFO    = ANSI::GREEN;
     const WARNING = ANSI::YELLOW;
