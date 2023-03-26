@@ -4,14 +4,6 @@ it('checks Minima interface constant VERSION', function () {
     expect(Minima::VERSION)->toBe('v0.1.0-dev');
 });
 
-it('checks Console interface constant INPUT', function () {
-    expect(Console::INPUT)->toBe(STDIN);
-});
-
-it('checks Console interface constant OUTPUT', function () {
-    expect(Console::OUTPUT)->toBe(STDOUT);
-});
-
 test('Minima interface has a VERSION constant', function () {
     $this->assertTrue(defined(Minima::class . '::VERSION'));
 });
@@ -22,6 +14,14 @@ test('Minima interface VERSION is a string', function () {
 
 test('Minima interface VERSION is equal to "v0.1.0-dev"', function () {
     $this->assertSame('v0.1.0-dev', Minima::VERSION);
+});
+
+it('checks Console interface constant INPUT', function () {
+    expect(Console::INPUT)->toBe(STDIN);
+});
+
+it('checks Console interface constant OUTPUT', function () {
+    expect(Console::OUTPUT)->toBe(STDOUT);
 });
 
 test('Console interface has an INPUT constant', function () {
