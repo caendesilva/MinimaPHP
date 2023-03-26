@@ -360,6 +360,6 @@ if (! function_exists('task')) {
      * you to skip long-running tasks while you test your script during development.
      */
     function task(string $name, callable $task): void {
-        //
+        $task();
     }
 }
