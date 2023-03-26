@@ -19,7 +19,7 @@ interface Console {
     const OUTPUT = STDOUT;
 }
 
-interface ANSI extends XML_ANSI {
+interface ANSI extends ANSI_EXT, XML_ANSI {
     const BLACK   = "\033[30m";
     const RED     = "\033[31m";
     const GREEN   = "\033[32m";
