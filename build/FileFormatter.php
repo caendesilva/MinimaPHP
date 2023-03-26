@@ -5,21 +5,21 @@ declare(strict_types=1);
 require_once __DIR__ . '/../minima.php';
 
 Command::main(function () {
-    $this->info('Formatting files!');
+    task('File formatting', function () {
+        $glob = glob(__DIR__ . '/../{*,**/*}.*', GLOB_BRACE);
+        $files = [];
 
-    $glob = glob(__DIR__ . '/../{*,**/*}.*', GLOB_BRACE);
-    $files = [];
-
-    foreach ($glob as $file) {
-        if (is_file($file)) {
-            $files[] = $file;
+        foreach ($glob as $file) {
+            if (is_file($file)) {
+                $files[] = $file;
+            }
         }
-    }
 
-    foreach ($files as $file) {
-        $this->line("Formatting ".basename($file));
-        formatFile($file);
-    }
+        foreach ($files as $file) {
+            $this->line("Formatting ".basename($file));
+            formatFile($file);
+        }
+    });
 });
 
 function formatFile(string $file): void {
