@@ -14,6 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Setup Git
+      run: |
+        git config --global user.email "git@desilva.se"
+        git config --global user.name "GitHub Actions"
+
     - name: Build the standalone
       run: php build/build-bin.php --git
 
