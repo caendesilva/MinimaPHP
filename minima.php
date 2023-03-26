@@ -33,7 +33,13 @@ interface ANSI extends ANSI_EXT, XML_ANSI {
 }
 
 interface ANSI_EXT {
-    //
+    const BRIGHT_RED     = "\033[91m";
+    const BRIGHT_GREEN   = "\033[92m";
+    const BRIGHT_YELLOW  = "\033[93m";
+    const BRIGHT_BLUE    = "\033[94m";
+    const BRIGHT_MAGENTA = "\033[95m";
+    const BRIGHT_CYAN    = "\033[96m";
+    const BRIGHT_WHITE   = "\033[97m";
 }
 
 interface XML_ANSI {
