@@ -22,6 +22,18 @@ Command::main(function () {
     test(ANSI::WHITE === "\033[37m");
     test(ANSI::GRAY === "\033[90m");
     test(ANSI::RESET === "\033[0m");
+    $this->line('---------');
+    $this->line(ANSI::BLACK.'BLACK'. ANSI::RESET);
+    $this->line(ANSI::RED.'RED'. ANSI::RESET);
+    $this->line(ANSI::GREEN.'GREEN'. ANSI::RESET);
+    $this->line(ANSI::YELLOW.'YELLOW'. ANSI::RESET);
+    $this->line(ANSI::BLUE.'BLUE'. ANSI::RESET);
+    $this->line(ANSI::MAGENTA.'MAGENTA'. ANSI::RESET);
+    $this->line(ANSI::CYAN.'CYAN'. ANSI::RESET);
+    $this->line(ANSI::WHITE.'WHITE'. ANSI::RESET);
+    $this->line(ANSI::GRAY.'GRAY'. ANSI::RESET);
+    $this->line(ANSI::RESET.'RESET'. ANSI::RESET);
+    $this->line('---------');
 });
 
 Command::main(function () {
