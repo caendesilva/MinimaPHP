@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../minima.php';
+require_once __DIR__.'/../minima.php';
 
 Command::main(function () {
     task('File formatting', function () {
-        $glob = glob(__DIR__ . '/../{*,**/*}.*', GLOB_BRACE);
+        $glob = glob(__DIR__.'/../{*,**/*}.*', GLOB_BRACE);
         $files = [];
 
         foreach ($glob as $file) {
@@ -16,7 +16,7 @@ Command::main(function () {
         }
 
         foreach ($files as $file) {
-            $this->line("Formatting ".basename($file));
+            $this->line('Formatting '.basename($file));
             formatFile($file);
         }
     }, false);
@@ -24,7 +24,7 @@ Command::main(function () {
 
 function formatFile(string $file): void {
     $contents = str_replace("\r\n", "\n", file_get_contents($file));
-    $contents = str_replace("\t", "    ", $contents);
+    $contents = str_replace("\t", '    ', $contents);
 
     $lines = explode("\n", $contents);
 

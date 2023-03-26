@@ -31,7 +31,7 @@ final class PicoUnit
     public static function stop(): int
     {
         $stopTimeInMs = number_format((microtime(true) - self::getInstance()->startTime) * 1000, 2);
-        echo sprintf("\n%sTests completed in %s with exit code %d %s\n", ANSI::GREEN, $stopTimeInMs . 'ms', self::getInstance()->exitCode, ANSI::RESET);
+        echo sprintf("\n%sTests completed in %s with exit code %d %s\n", ANSI::GREEN, $stopTimeInMs.'ms', self::getInstance()->exitCode, ANSI::RESET);
 
         return self::getInstance()->exitCode;
     }
@@ -50,11 +50,11 @@ final class PicoUnit
             $result = $result();
         }
 
-        if (! $result) {
+        if (!$result) {
             self::getInstance()->exitCode = 1;
         }
 
-        echo ($result ? self::PASSED : self::FAILED) . ": $testName\n";
+        echo($result ? self::PASSED : self::FAILED).": $testName\n";
     }
 }
 
