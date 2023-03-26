@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * This file is part of MinimaPHP.
+ * 
+ * @license MIT License
+ * @author Caen De Silva
+ * @copyright Copyright (c) 2023 Caen De Silva
+ * @link https://github.com/caendesilva/MinimaPHP
+ * @version Minima::VERSION
+ */
+
 interface Minima {
     const VERSION = 'v0.1.0-dev';
 }
