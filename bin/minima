@@ -395,7 +395,7 @@ if (! function_exists('task')) {
 // end minima.php
 
 interface Build {
-    const REVISION = '74a3499';
+    const REVISION = 'f96ed31';
 }
 
 interface ARGS {
@@ -514,7 +514,7 @@ function InitCommand(): Closure {
         if ($copyFile) {
             
         copy($sourcePath, "$baseDir/minima.php");
-        $this->line('Created minima.php');
+        $this->line("Created $mainName/minima.php");
 
         file_put_contents("$baseDir/$mainName.php", <<<'PHP'
 <?php
@@ -539,7 +539,7 @@ Command::main(function (): void {
 PHP);
         }
 
-        $this->line("Created $mainName.php");
+        $this->line("Created $mainName/$mainName.php");
 
         $this->info("All done! You can now define your logic in the '$mainName.php' file, then run it using `php $mainName.php`");
 
