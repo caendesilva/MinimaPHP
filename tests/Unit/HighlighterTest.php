@@ -17,7 +17,7 @@ test('The highlighter highlights dumped array', function () {
 
     $highlighted = Dumper::highlight($array);
 
-    expect($highlighted)->toBe(('[37m[[0m
+    expect($highlighted)->toBe('[37m[[0m
   [34m\'[32mfoo[34m\'[0m,
   [34m\'[32mbar[34m\'[0m => [34m\'[32mbaz[34m\'[0m,
   [34m\'[32marray[34m\'[0m => [37m[[0m
@@ -31,5 +31,5 @@ test('The highlighter highlights dumped array', function () {
   [37m][0m,
   [34m\'[32mobject[34m\'[0m => [33mDumper[0m,
   [34m\'[32mnull[34m\'[0m => [31mnull[0m
-[37m][0m'));
+[37m][0m');
 });
