@@ -13,6 +13,7 @@ interface ARGS {
         'about' => 'WelcomeCommand',
         'init' => 'InitCommand',
         'new' => 'NewCommand',
+        'self-update' => 'SelfUpdateCommand',
     ];
 
     public const OPTS = [
