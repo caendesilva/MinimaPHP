@@ -1,0 +1,16 @@
+{
+    "require-dev": {
+        "pestphp/pest": "^2.2",
+        "mockery/mockery": "^1.5"
+    },
+    "autoload" : {
+        "files": [
+            "../minima.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
