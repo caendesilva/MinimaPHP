@@ -360,6 +360,7 @@ if (! function_exists('task')) {
      * This is great for skipping long tasks when testing your script during coding.
      */
     function task(string $name, callable $task): void {
+        Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name\n".ANSI::RESET);
         if (! getenv('SKIP_TASKS')) {
             $task();
         }
