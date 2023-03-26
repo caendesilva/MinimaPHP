@@ -118,6 +118,10 @@ function InitCommand(): Closure {
             }
         }
 
+        $copyFile = ! $this->hasOption('require-global');
+
+        if ($copyFile) {
+            
         copy($sourcePath, "$baseDir/minima.php");
         $this->line('Created minima.php');
 
@@ -131,6 +135,18 @@ Command::main(function (): void {
 });
 
 PHP);
+        } else {
+        file_put_contents("$baseDir/$mainName.php", <<<PHP
+<?php
+
+require_once '$sourcePath';
+
+Command::main(function (): void {
+    \$this->info('Welcome to MinimaPHP!');
+});
+
+PHP);
+        }
 
         $this->line("Created $mainName.php");
 
