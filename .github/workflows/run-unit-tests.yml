@@ -21,5 +21,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Run Pest tests
         run: cd tests && vendor/bin/pest
