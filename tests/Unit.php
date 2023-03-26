@@ -25,6 +25,15 @@ Command::main(function () {
     $this->line(ANSI::GRAY.'GRAY'. ANSI::RESET);
     $this->line(ANSI::RESET.'RESET'. ANSI::RESET);
 
+    // $this->line('Extended ANSI');
+    $this->line(ANSI_EXT::BRIGHT_RED.'BRIGHT_RED'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_GREEN.'BRIGHT_GREEN'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_YELLOW.'BRIGHT_YELLOW'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_BLUE.'BRIGHT_BLUE'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_MAGENTA.'BRIGHT_MAGENTA'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_CYAN.'BRIGHT_CYAN'. ANSI::RESET);
+    $this->line(ANSI_EXT::BRIGHT_WHITE.'BRIGHT_WHITE'. ANSI::RESET);
+
     // $this->line('XML ANSI');
     $this->line(XML_ANSI::INFO .'INFO'.ANSI::RESET);
     $this->line(XML_ANSI::WARNING .'WARNING'.ANSI::RESET);
