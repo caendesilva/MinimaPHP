@@ -145,7 +145,7 @@ trait AccessesArguments {
         $options = [];
         $arguments = [];
 
-        for($i = 1; $i < $argc; $i++) {
+        for ($i = 1; $i < $argc; $i++) {
             if (str_starts_with($argv[$i], '-')) {
                 $options[] = $argv[$i];
             } else {
@@ -208,17 +208,17 @@ class Dumper {
     public static int $arrayBreakLevel = 2;
 
     const INDENT = '  ';
-    const ARRAY_OPEN = ANSI::WHITE.'['.ANSI::RESET;
-    const ARRAY_CLOSE = ANSI::WHITE.']'.ANSI::RESET;
-    const STRING_OPEN = ANSI::BLUE."'".ANSI::GREEN;
-    const STRING_CLOSE = ANSI::BLUE."'".ANSI::RESET;
+    const ARRAY_OPEN = ANSI::WHITE . '[' . ANSI::RESET;
+    const ARRAY_CLOSE = ANSI::WHITE . ']' . ANSI::RESET;
+    const STRING_OPEN = ANSI::BLUE . "'" . ANSI::GREEN;
+    const STRING_CLOSE = ANSI::BLUE . "'" . ANSI::RESET;
     const INTEGER_OPEN = ANSI::YELLOW;
     const INTEGER_CLOSE = ANSI::RESET;
     const BOOLEAN_OPEN = ANSI::RED;
     const BOOLEAN_CLOSE = ANSI::RESET;
     const OBJECT_OPEN = ANSI::YELLOW;
     const OBJECT_CLOSE = ANSI::RESET;
-    const NULL = ANSI::RED.'null'.ANSI::RESET;
+    const NULL = ANSI::RED . 'null' . ANSI::RESET;
 
     protected int $indentationLevel = 0;
     protected bool $inOpenArray = false;
@@ -244,7 +244,7 @@ class Dumper {
             return $this->array($data);
         }
         if (is_object($data)) {
-            return static::OBJECT_OPEN .$data::class.static::OBJECT_CLOSE;
+            return static::OBJECT_OPEN . $data::class . static::OBJECT_CLOSE;
         }
 
         return (string) $data;
@@ -279,17 +279,17 @@ class Dumper {
                 $indent = '';
             }
             if (is_int($key)) {
-                $parts[] = $indent.$this->runHighlighter($value);
+                $parts[] = $indent . $this->runHighlighter($value);
             } else {
-                $parts[] = $indent.$this->string($key).' => '.$this->runHighlighter($value);
+                $parts[] = $indent . $this->string($key) . ' => ' . $this->runHighlighter($value);
             }
         }
         if ($this->inOpenArray) {
             $this->indentationLevel--;
             $indent = str_repeat(self::INDENT, $this->indentationLevel);
-            return static::ARRAY_OPEN."\n".implode(",\n", $parts)."\n$indent".static::ARRAY_CLOSE;
+            return static::ARRAY_OPEN . "\n" . implode(",\n", $parts) . "\n$indent" . static::ARRAY_CLOSE;
         } else {
-            return static::ARRAY_OPEN.''.implode(', ', $parts).''.static::ARRAY_CLOSE;
+            return static::ARRAY_OPEN . '' . implode(', ', $parts) . '' . static::ARRAY_CLOSE;
         }
     }
 }
@@ -303,7 +303,7 @@ if (! function_exists('main')) {
 if (! function_exists('dump')) {
     function dump(mixed $value, bool $highlight = false): void {
         if ($highlight) {
-            echo Dumper::highlight($value)."\n";
+            echo Dumper::highlight($value) . "\n";
         } else {
             var_dump($value);
         }
