@@ -11,19 +11,16 @@
  *
  * @version Minima::VERSION
  */
-interface Minima
-{
+interface Minima {
     const VERSION = 'v0.1.0-dev';
 }
 
-interface Console
-{
+interface Console {
     const INPUT = STDIN;
     const OUTPUT = STDOUT;
 }
 
-interface ANSI extends ANSI_EXT, XML_ANSI
-{
+interface ANSI extends ANSI_EXT, XML_ANSI {
     const BLACK = "\033[30m";
     const RED = "\033[31m";
     const GREEN = "\033[32m";
@@ -36,8 +33,7 @@ interface ANSI extends ANSI_EXT, XML_ANSI
     const RESET = "\033[0m";
 }
 
-interface ANSI_EXT
-{
+interface ANSI_EXT {
     const BRIGHT_RED = "\033[91m";
     const BRIGHT_GREEN = "\033[92m";
     const BRIGHT_YELLOW = "\033[93m";
@@ -47,8 +43,7 @@ interface ANSI_EXT
     const BRIGHT_WHITE = "\033[97m";
 }
 
-interface XML_ANSI
-{
+interface XML_ANSI {
     const INFO = ANSI::GREEN;
     const WARNING = ANSI::YELLOW;
     const ERROR = ANSI::RED;
@@ -56,8 +51,7 @@ interface XML_ANSI
     const RESET = ANSI::RESET;
 }
 
-trait WritesToOutput
-{
+trait WritesToOutput {
     protected function write(string $string): void {
         Output::write($string);
     }
@@ -126,8 +120,7 @@ trait WritesToOutput
     }
 }
 
-trait AccessesArguments
-{
+trait AccessesArguments {
     protected function options(): array {
         return $this->options;
     }
@@ -206,8 +199,7 @@ trait AccessesArguments
     }
 }
 
-class Output
-{
+class Output {
     public static function write(string $string): void {
         file_put_contents('php://output', $string);
     }
@@ -218,8 +210,7 @@ class Output
     }
 }
 
-class Input
-{
+class Input {
     public static function readline(?string $prompt = null): string {
         return readline($prompt);
     }
@@ -229,8 +220,7 @@ class Input
     }
 }
 
-class Command
-{
+class Command {
     use WritesToOutput;
     use AccessesArguments;
 
@@ -254,8 +244,7 @@ class Command
     }
 }
 
-class Dumper
-{
+class Dumper {
     public static int $arrayBreakLevel = 2;
 
     const INDENT = '  ';
