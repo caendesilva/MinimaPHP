@@ -4,18 +4,6 @@
 
 MinimaPHP is a PHP console micro-framework for quickly creating fast general purpose command-line scripts, usually to automate boring tasks, using the PHP tools you're already familiar with. Minima provides easy helpers to interact with the CLI I/O, making it a breeze to build powerful and dynamic scripts.
 
-### Benefits
-
-The main benefit of using MinimaPHP is that it has **zero dependencies**. You thus don't need to bother with Composer or autoloading. Just include the single compact `minima.php` file and you're ready to go. That's right, you don't even need a Phar, because Minima is tiny (< 10Kb).
-
-### The Philosophy
-
-Since Minima is designed for scripting, the philosophy is that your Minima projects don't need to be pretty, they just need to do the thing you want them to do. If all you're doing is [formatting some files](https://github.com/caendesilva/MinimaPHP/blob/main/build/FileFormatter.php), or [compiling a file to a standalone executable](https://github.com/caendesilva/MinimaPHP/blob/main/build/build-bin.php), who cares if the code looks ugly, as long as it works! Just bodge something together, then call it a day.
-
-### What it looks like
-
-Before jumping into the installation details, let's see a minimal script setup. Forget what I just said above, this is rather beautiful right?
-
 ```php
 <?php
 
@@ -25,6 +13,14 @@ Command::main(function () {
     $this->info('Welcome to MinimaPHP!');
 });
 ```
+
+### Benefits
+
+The main benefit of using MinimaPHP is that it has **zero dependencies**. You thus don't need to bother with Composer or autoloading. Just include the single compact `minima.php` file and you're ready to go. That's right, you don't even need a Phar, because Minima is tiny (< 10Kb).
+
+### The Philosophy
+
+Since Minima is designed for scripting, the philosophy is that your Minima projects don't need to be pretty, they just need to do the thing you want them to do. If all you're doing is [formatting some files](https://github.com/caendesilva/MinimaPHP/blob/main/build/FileFormatter.php), or [compiling a file to a standalone executable](https://github.com/caendesilva/MinimaPHP/blob/main/build/build-bin.php), who cares if the code looks ugly, as long as it works! Just bodge something together, then call it a day.
 
 
 ## Installation
