@@ -236,3 +236,11 @@ This will print the following: (any output will be buffered and printed indented
 Running task Example Task... Done! (took 0.01ms) 
   Hello world!
 ```
+
+#### Skipping tasks
+
+The tasks are made useful by being skippable. You can either do this by setting the environment variable before defining the task:
+
+```php
+putenv('SKIP_TASKS=true');
+```
