@@ -371,7 +371,7 @@ if (! function_exists('task')) {
             $time = round((microtime(true) - $timeStart) * 1000, 2);
             Output::write(ANSI::GREEN."Done! ".ANSI::GRAY."(took {$time}ms)"." \n".ANSI::RESET);
         } else {
-            Output::write(ANSI::YELLOW."Skipped.\n".ANSI::RESET);
+            Output::write(ANSI::YELLOW."Skipped ".ANSI::GRAY."(as set in environment variable)\n".ANSI::RESET);
         }
         if (! empty($buffer)) {
             foreach (explode("\n", trim($buffer)) as $line) {
