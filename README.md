@@ -244,3 +244,5 @@ The tasks are made useful by being skippable. You can either do this by setting 
 ```php
 putenv('SKIP_TASKS=true');
 ```
+
+You can also pass `--skip-tasks` to the called command to automatically set the environment variable.
