@@ -358,6 +358,8 @@ if (! function_exists('task')) {
      * Create a self-contained task that does something, then reports the execution time.
      * You can bypass all tasks by setting the environment variable SKIP_TASKS to true.
      * This is great for skipping long tasks when testing your script during coding.
+     * 
+     * // Todo add buffer parameter to disable buffering, in case live output is needed?
      */
     function task(string $name, callable $task): void {
         Output::write(ANSI::GREEN."Running task ".ANSI::YELLOW."$name".ANSI::GREEN."...".ANSI::RESET." ");
