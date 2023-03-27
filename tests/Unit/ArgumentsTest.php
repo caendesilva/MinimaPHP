@@ -1,7 +1,5 @@
 <?php
 
-test('options', function () {
-    main(function () {
-        expect($this->options)->toBeArray();
-    });
-});
+test('options', fn() => main(function () {
+    expect($this->options)->toBeArray();
+}));
