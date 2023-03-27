@@ -39,3 +39,44 @@ test('get option default', fn() => main(function () {
 test('get argument default', fn() => main(function () {
     expect($this->getArgument('foo', 'bar'))->toBe('bar');
 }));
+
+test('options parsing', function () {
+    global $argv;
+    global $argc;
+    $argvBackup = $argv;
+    $argcBackup = $argc;
+
+    $argv = ['script', 'argument', 'argument-with=value', '--option=value', '--flag', '-v'];
+    $argc = count($argv);
+
+    main(function () {
+        expect($this->options)->toBe([
+            'option' => 'value',
+            'flag' => true,
+            'v' => true,
+        ]);
+    });
+
+    $argv = $argvBackup;
+    $argc = $argcBackup;
+});
+
+test('arguments parsing', function () {
+    global $argv;
+    global $argc;
+    $argvBackup = $argv;
+    $argcBackup = $argc;
+
+    $argv = ['script', 'argument', 'argument-with=value', '--option=value', '--flag', '-v'];
+    $argc = count($argv);
+
+    main(function () {
+        expect($this->arguments)->toBe([
+            'argument',
+            'argument-with' => 'value',
+        ]);
+    });
+
+    $argv = $argvBackup;
+    $argc = $argcBackup;
+});
