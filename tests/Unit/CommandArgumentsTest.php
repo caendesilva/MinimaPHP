@@ -8,6 +8,14 @@ test('arguments', fn() => main(function () {
     expect($this->arguments)->toBeArray();
 }));
 
+test('options method', fn() => main(function () {
+    expect($this->options())->toBe($this->options);
+}));
+
+test('arguments method', fn() => main(function () {
+    expect($this->arguments())->toBe($this->arguments);
+}));
+
 test('has option', fn() => main(function () {
     expect($this->hasOption('foo'))->toBeFalse();
 }));
