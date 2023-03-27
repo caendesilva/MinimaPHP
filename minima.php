@@ -57,7 +57,7 @@ trait InteractsWithIO {
     }
 
     public function line(string $message = ''): void {
-        Output::write($message.PHP_EOL);
+        Output::write($message."\n");
     }
 
     public function info(string $message): void {
