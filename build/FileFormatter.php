@@ -6,7 +6,7 @@ require_once __DIR__.'/../minima.php';
 
 Command::main(function () {
     task('File formatting', function () {
-        $glob = glob(__DIR__.'/../{*,**/*}.*', GLOB_BRACE);
+        $glob = glob(__DIR__.'/../{*,**/*,**/**/*}.*', GLOB_BRACE);
         $files = [];
 
         foreach ($glob as $file) {
