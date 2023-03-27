@@ -16,7 +16,7 @@ Command::main(function () {
         }
 
         foreach ($files as $file) {
-            $this->line('Formatting '.basename($file));
+            $this->line('Formatting '.substr(realpath($file), strlen(realpath(__DIR__.'/../')) + 1));
             formatFile($file);
         }
     }, false);
