@@ -60,7 +60,7 @@ trait InteractsWithIO {
     }
 
     public function line(string $message = ''): void {
-        Output::write($message.PHP_EOL);
+        Output::write($message."\n");
     }
 
     public function info(string $message): void {
@@ -395,7 +395,7 @@ if (!function_exists('task')) {
 // end minima.php
 
 interface Build {
-    const REVISION = 'f458cda';
+    const REVISION = '7d1c9c0';
 }
 
 interface ARGS {
